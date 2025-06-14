@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Oportunidades de IA en Contratación Pública - Colombia 2024-2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 50vh;
+        }
+        .flowchart-node {
+            border: 2px solid;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .flowchart-arrow {
+            content: '';
+            width: 2px;
+            background-color: #003f5c;
+            flex-grow: 1;
+        }
+        .flowchart-arrow-horizontal {
+            content: '';
+            height: 2px;
+            background-color: #003f5c;
+            flex-grow: 1;
+        }
+        .pyramid-level {
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+            padding: 2rem 1rem 1rem 1rem;
+            margin-bottom: -1px;
+        }
+        .stat-card h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #665191, #d45087);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-[#003f5c]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black mb-4">La Revolución de la IA en el Sector Público Colombiano</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-[#2f4b7c]">Análisis de las oportunidades de contratación estatal en Inteligencia Artificial para 2024-2025, diseñado para guiar decisiones estratégicas.</p>
+        </header>
+
+        <section class="my-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg stat-card">
+                    <h3 class="gradient-text">100+</h3>
+                    <p class="font-semibold">Procesos de Contratación Iniciados</p>
+                    <p class="text-sm text-gray-500 mt-2">Desde 2024, demostrando una demanda activa y creciente en IA.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg stat-card">
+                    <h3 class="gradient-text">4+</h3>
+                    <p class="font-semibold">Sectores Clave en Transformación</p>
+                    <p class="text-sm text-gray-500 mt-2">TIC, Salud, Seguridad y Educación lideran la adopción de soluciones de IA.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg stat-card">
+                    <h3 class="gradient-text">>$1B</h3>
+                    <p class="font-semibold">Potencial en Grandes Proyectos</p>
+                    <p class="text-sm text-gray-500 mt-2">Proyectos de escala nacional pueden superar los mil millones de pesos en inversión.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-2">Ecosistema de la Contratación Pública en IA</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Comprender el flujo del proceso es clave. Las oportunidades más estratégicas surgen en las fases tempranas, donde se puede influir en los requerimientos técnicos.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center w-full gap-4">
+                    <div class="flowchart-node border-[#003f5c] bg-blue-50 w-full md:w-1/5">
+                        <p class="font-bold text-lg">Necesidad Gubernamental</p>
+                    </div>
+                    <div class="w-8 h-px md:w-auto md:h-8 bg-[#003f5c]"></div>
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="flowchart-node border-[#665191] bg-purple-50 w-full">
+                            <p class="font-bold text-lg">Fase de Exploración</p>
+                            <p class="text-sm mt-1">Publicación de RFI (Solicitud de Información)</p>
+                            <span class="mt-2 text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-full">OPORTUNIDAD DE INFLUENCIA</span>
+                        </div>
+                    </div>
+                    <div class="w-8 h-px md:w-auto md:h-8 bg-[#003f5c]"></div>
+                     <div class="flex flex-col items-center gap-4">
+                        <div class="flowchart-node border-[#d45087] bg-pink-50 w-full">
+                            <p class="font-bold text-lg">Fase de Licitación</p>
+                            <p class="text-sm mt-1">Publicación de Pliegos</p>
+                            <span class="mt-2 text-xs font-bold text-yellow-600 bg-yellow-100 px-2 py-1 rounded-full">OPORTUNIDAD DE LICITACIÓN</span>
+                        </div>
+                    </div>
+                    <div class="w-8 h-px md:w-auto md:h-8 bg-[#003f5c]"></div>
+                    <div class="flowchart-node border-[#ff7c43] bg-orange-50 w-full md:w-1/5">
+                        <p class="font-bold text-lg">Adjudicación y Ejecución</p>
+                        <span class="mt-2 text-xs font-bold text-blue-600 bg-blue-100 px-2 py-1 rounded-full">OPORTUNIDAD DE SOPORTE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="text-3xl font-bold text-center mb-8">Análisis por Sector: ¿Dónde está la Demanda?</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-center mb-4">Volumen de Proyectos por Sector</h3>
+                    <div class="chart-container">
+                        <canvas id="sectorChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-lg text-[#2f4b7c] mb-4">La demanda de IA no es uniforme. Los sectores de **TIC y Educación** lideran en volumen de contratos, muchos de ellos enfocados en capacitación y modernización de infraestructura.</p>
+                    <p class="text-lg text-[#2f4b7c]">Sin embargo, las oportunidades de mayor valor económico y complejidad técnica se concentran en **Salud y Seguridad**, con proyectos emergentes de analítica predictiva y ciberdefensa que definirán el futuro de los servicios al ciudadano.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="text-3xl font-bold text-center mb-8">Niveles de Inversión: Dimensionando la Oportunidad</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                     <p class="text-lg text-[#2f4b7c] mb-4">El mercado presenta una dualidad interesante. Por un lado, una base amplia de **proyectos pequeños** (<$10M COP) que son ideales para generar visibilidad y construir casos de éxito. </p>
+                     <p class="text-lg text-[#2f4b7c]">Por otro, un selecto grupo de **proyectos grandes y estratégicos** (>$1.000M COP) que representan las mayores oportunidades de negocio, pero requieren una alta especialización y capacidad demostrada.</p>
+                </div>
+                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-center mb-4">Estructura de Inversión en Proyectos de IA</h3>
+                    <div class="flex flex-col items-center justify-center max-w-md mx-auto">
+                        <div class="w-full text-center text-white font-bold text-lg pyramid-level" style="background-color: #d45087; width: 60%;">
+                            <p>Grandes</p>
+                            <p class="text-sm font-normal">> $1.000M COP</p>
+                        </div>
+                        <div class="w-full text-center text-white font-bold text-lg pyramid-level" style="background-color: #a05195; width: 80%;">
+                             <p>Medianos</p>
+                             <p class="text-sm font-normal">$50M - $300M COP</p>
+                        </div>
+                        <div class="w-full text-center text-white font-bold text-lg pyramid-level" style="background-color: #665191; width: 100%;">
+                             <p>Pequeños</p>
+                             <p class="text-sm font-normal">< $10M COP</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">La pirámide ilustra cómo pocos proyectos grandes concentran la mayor inversión, mientras que una base amplia de proyectos pequeños ofrece múltiples puntos de entrada al mercado.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-2">Matriz de Oportunidades Estratégicas</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">No todas las oportunidades son iguales. Esta matriz visualiza las áreas más atractivas, cruzando la demanda actual con el potencial de valor de los contratos.</p>
+                <div class="chart-container h-[450px] max-h-[60vh]">
+                    <canvas id="opportunityChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-8">Las áreas de **Ciberseguridad y Analítica de Datos** representan el "punto dulce": alta demanda combinada con un alto potencial de valor. La **Formación** es una excelente puerta de entrada, mientras que el **Procesamiento de Lenguaje Natural (PLN)** es un área a vigilar para el futuro.</p>
+            </div>
+        </section>
+
+        <section class="my-20">
+            <h2 class="text-3xl font-bold text-center mb-8">Proyectos Emblemáticos: La IA en Acción</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <span class="text-3xl mb-3">🛡️</span>
+                    <h3 class="font-bold text-xl mb-2">Ciberseguridad con IA</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">El **MinTIC** lidera con licitaciones para adquirir herramientas de detección de amenazas basadas en IA y Machine Learning, marcando un precedente en la defensa cibernética del Estado.</p>
+                    <span class="text-xs font-bold text-[#d45087] bg-pink-100 px-2 py-1 rounded-full self-start">VALOR: ALTO</span>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <span class="text-3xl mb-3">⚕️</span>
+                    <h3 class="font-bold text-xl mb-2">Analítica Predictiva en Salud</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">El **MinSalud** busca implementar modelos de analítica de datos con IA para fortalecer el sistema preventivo y predictivo de salud pública a escala nacional.</p>
+                     <span class="text-xs font-bold text-[#d45087] bg-pink-100 px-2 py-1 rounded-full self-start">VALOR: MUY ALTO</span>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <span class="text-3xl mb-3">👁️</span>
+                    <h3 class="font-bold text-xl mb-2">Control de Acceso con Biometría</h3>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">Entidades como la **Contraloría de Norte de Santander** ya han implementado sistemas de reconocimiento facial, demostrando la viabilidad de soluciones de IA concretas y de rápida implementación.</p>
+                    <span class="text-xs font-bold text-[#665191] bg-purple-100 px-2 py-1 rounded-full self-start">VALOR: BAJO</span>
+                </div>
+             </div>
+        </section>
+
+        <footer class="my-16 text-center border-t pt-8 border-gray-300">
+             <h2 class="text-3xl font-bold mb-4">Conclusión y Hoja de Ruta Propuesta</h2>
+             <p class="text-lg text-[#2f4b7c] max-w-3xl mx-auto mb-8">El mercado de contratación pública de IA en Colombia es una realidad tangible y en crecimiento. Las barreras de entrada son superables con una estrategia proactiva. Proponemos los siguientes pasos:</p>
+             <ol class="list-decimal list-inside text-left max-w-xl mx-auto space-y-3">
+                <li><span class="font-semibold">Monitoreo Activo:</span> Implementar vigilancia constante del portal SECOP II.</li>
+                <li><span class="font-semibold">Preparación de Propuestas de Valor:</span> Desarrollar ofertas enfocadas en Ciberseguridad con IA y Analítica de Datos.</li>
+                <li><span class="font-semibold">Networking y Posicionamiento:</span> Participar activamente en las solicitudes de información (RFI) para posicionarse como expertos.</li>
+                <li><span class="font-semibold">Desarrollo de Casos de Éxito:</span> Sistematizar la experiencia previa para usarla como evidencia de idoneidad.</li>
+                <li><span class="font-semibold">Asignación de Recursos:</span> Formar un equipo dedicado a la preparación de licitaciones públicas.</li>
+             </ol>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (typeof label !== 'string' || label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).length > maxLength) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine += (currentLine ? ' ' : '') + word;
+                    }
+                });
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                } else {
+                  return label;
+                }
+            };
+            
+            const chartColors = {
+                purple: '#665191',
+                pink: '#d45087',
+                orange: '#ff7c43',
+                yellow: '#ffa600',
+                blue: '#2f4b7c'
+            };
+
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#003f5c',
+                            font: {
+                                family: 'Inter'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        },
+                        backgroundColor: '#003f5c',
+                        titleFont: { family: 'Inter', weight: 'bold', size: 14 },
+                        bodyFont: { family: 'Inter' },
+                        padding: 12,
+                        cornerRadius: 6
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: { color: '#2f4b7c' },
+                        grid: { color: '#e0e6f0' }
+                    },
+                    x: {
+                        ticks: { color: '#2f4b7c' },
+                        grid: { display: false }
+                    }
+                }
+            };
+
+            const sectorCtx = document.getElementById('sectorChart');
+            if(sectorCtx) {
+                new Chart(sectorCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['TIC y Gobierno Digital', 'Educación y Formación', 'Seguridad y Defensa', 'Salud'].map(wrapLabel),
+                        datasets: [{
+                            label: 'Volumen de Proyectos (Estimado)',
+                            data: [85, 75, 40, 30],
+                            backgroundColor: [chartColors.blue, chartColors.purple, chartColors.pink, chartColors.orange],
+                            borderColor: '#ffffff',
+                            borderWidth: 2,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: { ...commonOptions, indexAxis: 'y' }
+                });
+            }
+
+            const opportunityCtx = document.getElementById('opportunityChart');
+            if (opportunityCtx) {
+                const opportunityData = {
+                    labels: [
+                        'Ciberseguridad con IA', 
+                        'Analítica de Datos', 
+                        'Visión por Computador', 
+                        'Formación y Consultoría', 
+                        'Procesamiento de Lenguaje Natural (PLN)'
+                    ].map(wrapLabel),
+                    datasets: [{
+                        label: 'Oportunidades Estratégicas',
+                        data: [
+                            { x: 4.5, y: 4.5, r: 25 }, 
+                            { x: 4, y: 5, r: 28 }, 
+                            { x: 3, y: 3.5, r: 18 }, 
+                            { x: 5, y: 2, r: 20 }, 
+                            { x: 1.5, y: 3, r: 12 }, 
+                        ],
+                        backgroundColor: [
+                            chartColors.pink,
+                            chartColors.orange,
+                            chartColors.blue,
+                            chartColors.purple,
+                            chartColors.yellow
+                        ],
+                         hoverBackgroundColor: '#003f5c'
+                    }]
+                };
+
+                new Chart(opportunityCtx, {
+                    type: 'bubble',
+                    data: opportunityData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    title: (tooltipItems) => {
+                                        const item = tooltipItems[0];
+                                        let label = opportunityData.labels[item.dataIndex];
+                                        return Array.isArray(label) ? label.join(' ') : label;
+                                    },
+                                    label: function(context) {
+                                        let label = [];
+                                        label.push(`Demanda: ${context.parsed.x} / 5`);
+                                        label.push(`Potencial de Valor: ${context.parsed.y} / 5`);
+                                        label.push(`Importancia Estratégica: ${context.raw.r}`);
+                                        return label;
+                                    }
+                                },
+                                backgroundColor: '#003f5c',
+                                titleFont: { family: 'Inter', weight: 'bold', size: 14 },
+                                bodyFont: { family: 'Inter' },
+                                padding: 12,
+                                cornerRadius: 6
+                            }
+                        },
+                        scales: {
+                            y: {
+                                title: { display: true, text: 'Potencial de Valor del Contrato', color: '#003f5c', font: { weight: 'bold' } },
+                                min: 0,
+                                max: 5.5,
+                                ticks: { color: '#2f4b7c' },
+                                grid: { color: '#e0e6f0' }
+                            },
+                            x: {
+                                title: { display: true, text: 'Nivel de Demanda Actual', color: '#003f5c', font: { weight: 'bold' } },
+                                min: 0,
+                                max: 5.5,
+                                ticks: { color: '#2f4b7c' },
+                                grid: { color: '#e0e6f0' }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
