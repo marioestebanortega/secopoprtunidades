@@ -58,9 +58,52 @@
             margin-right: 0.5rem;
             color: #54595d;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .close-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        .close-button:hover {
+            color: #000;
+        }
     </style>
 </head>
 <body class="text-[#202122]">
+    <!-- Modal para el Podcast -->
+    <div id="podcastModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closePodcastModal()">&times;</span>
+            <h2 class="text-xl font-bold mb-4">Podcast: Análisis Detallado</h2>
+            <p class="mb-4">Escuche el análisis detallado sobre las oportunidades de IA en la contratación pública colombiana:</p>
+            <audio controls class="w-full">
+                <source src="podcast.wav" type="audio/wav">
+                Su navegador no soporta el elemento de audio.
+            </audio>
+        </div>
+    </div>
 
     <div class="wiki-container mx-auto p-4 md:p-8">
         <h1 class="text-4xl font-bold border-b pb-4 mb-4">Contratación Pública de Inteligencia Artificial en Colombia</h1>
@@ -79,6 +122,7 @@
                         <li><a href="#oportunidades"><span class="toc-number">4</span>Oportunidades para Empresas</a></li>
                         <li><a href="#representativos"><span class="toc-number">5</span>Contratos Representativos</a></li>
                         <li><a href="#conclusiones"><span class="toc-number">6</span>Conclusiones</a></li>
+                        <li><a href="#podcast"><span class="toc-number">7</span>Podcast: Análisis Detallado</a></li>
                     </ul>
                 </div>
 
@@ -184,6 +228,17 @@
                     <p>El análisis muestra una clara tendencia al incremento en la adopción de soluciones de IA por parte del Estado colombiano. Aunque dominan proyectos piloto y etapas de planeación, ya existen contratos que incorporan IA en la operación gubernamental. Para las empresas especializadas, el sector público representa un campo de oportunidades en expansión, que requiere enfoques adaptados a cada dominio y el cumplimiento de la normativa de contratación. El Estado colombiano busca seguir las tendencias internacionales de forma responsable, considerando lineamientos éticos y de seguridad, sentando las bases para un aprendizaje institucional sobre cómo aprovechar la IA en beneficio de la ciudadanía.</p>
                 </section>
 
+                <section id="podcast" class="mt-8">
+                    <h2><span class="toc-number">7</span> Podcast: Análisis Detallado</h2>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <p class="mb-4">Escuche el análisis detallado sobre las oportunidades de IA en la contratación pública colombiana:</p>
+                        <audio controls class="w-full">
+                            <source src="podcast.wav" type="audio/wav">
+                            Su navegador no soporta el elemento de audio.
+                        </audio>
+                    </div>
+                </section>
+
             </div>
 
             <aside class="lg:col-span-1">
@@ -234,6 +289,16 @@
                                     </ul>
                                 </td>
                             </tr>
+                            <tr class="border-t">
+                                <th class="p-2 text-left">Recursos</th>
+                                <td class="p-2 text-left">
+                                    <ul class="list-disc pl-5">
+                                        <li><a href="#" onclick="openPodcastModal(); return false;" class="text-blue-600 hover:underline">🎧 Escuchar Podcast</a></li>
+                                        <li><a href="investigacion.pdf" class="text-blue-600 hover:underline" target="_blank">📄 Ver Investigación Completa</a></li>
+                                        <li><a href="infografia.html" class="text-blue-600 hover:underline" target="_blank">📊 Ver Infografía</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -241,5 +306,23 @@
 
         </div>
     </div>
+
+    <script>
+        function openPodcastModal() {
+            document.getElementById('podcastModal').style.display = 'block';
+        }
+
+        function closePodcastModal() {
+            document.getElementById('podcastModal').style.display = 'none';
+        }
+
+        // Cerrar el modal si se hace clic fuera de él
+        window.onclick = function(event) {
+            var modal = document.getElementById('podcastModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
