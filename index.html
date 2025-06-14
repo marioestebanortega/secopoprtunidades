@@ -15,9 +15,11 @@
         }
         .wiki-container {
             max-width: 1200px;
+            width: 100%;
+            padding: 0 1rem;
         }
         .wiki-content h2 {
-            font-size: 1.75rem;
+            font-size: clamp(1.5rem, 4vw, 1.75rem);
             font-weight: 700;
             border-bottom: 1px solid #a2a9b1;
             padding-bottom: 0.25rem;
@@ -25,7 +27,7 @@
             margin-bottom: 1rem;
         }
         .wiki-content h3 {
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 3vw, 1.25rem);
             font-weight: 700;
             margin-top: 1rem;
             margin-bottom: 0.5rem;
@@ -33,12 +35,18 @@
         .infobox {
             border: 1px solid #a2a9b1;
             background-color: #f8f9fa;
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem 0;
         }
         .toc {
             border: 1px solid #a2a9b1;
             background-color: #f8f9fa;
             padding: 1rem;
             border-radius: 4px;
+            width: 100%;
+            max-width: 600px;
+            margin: 1rem auto;
         }
         .toc ul {
             list-style-type: none;
@@ -73,7 +81,7 @@
             background-color: #fff;
             margin: 15% auto;
             padding: 20px;
-            width: 80%;
+            width: 90%;
             max-width: 500px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -93,11 +101,15 @@
             background-color: #f8f9fa;
             border-bottom: 1px solid #a2a9b1;
             padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .top-nav a {
             color: #0645ad;
             text-decoration: none;
             padding: 0.5rem 1rem;
+            white-space: nowrap;
         }
         .top-nav a:hover {
             text-decoration: underline;
@@ -107,6 +119,10 @@
             background-color: #f8f9fa;
             border-right: 1px solid #a2a9b1;
             padding: 1rem;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
         }
         .wiki-sidebar ul {
             list-style-type: none;
@@ -125,6 +141,8 @@
         .wiki-main {
             flex: 1;
             padding: 1rem;
+            max-width: 100%;
+            overflow-x: hidden;
         }
         .wiki-header {
             border-bottom: 1px solid #a2a9b1;
@@ -132,13 +150,48 @@
             margin-bottom: 1rem;
         }
         .wiki-header h1 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
             font-weight: 700;
             margin: 0;
         }
         .wiki-header .subtitle {
             color: #54595d;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 3vw, 1rem);
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        table {
+            min-width: 800px;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .wiki-container {
+                flex-direction: column;
+            }
+            .wiki-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #a2a9b1;
+            }
+            .top-nav .flex {
+                flex-direction: column;
+                align-items: center;
+            }
+            .top-nav .flex > div {
+                margin: 0.5rem 0;
+            }
+            .wiki-main {
+                padding: 0.5rem;
+            }
+            .toc {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -171,7 +224,7 @@
         </div>
     </nav>
 
-    <div class="wiki-container mx-auto flex">
+    <div class="wiki-container mx-auto flex flex-col md:flex-row">
         <!-- Barra lateral -->
         <aside class="wiki-sidebar hidden md:block">
             <div class="mb-8">
@@ -286,7 +339,7 @@
 
                     <h3 class="subsection-title">Oportunidades Abiertas: ¡Actúe Ahora!</h3>
                     <p class="mb-4">Estos procesos están en fase activa de "Presentación de oferta" y representan una ventana de tiempo limitada para participar:</p>
-                    <div class="overflow-x-auto rounded-lg shadow-md mb-8">
+                    <div class="table-container">
                         <table class="min-w-full bg-white">
                             <thead>
                                 <tr>
@@ -337,7 +390,7 @@
 
                     <h3 class="subsection-title">Procesos Recientemente Adjudicados: Inteligencia de Mercado y Posibles Alianzas</h3>
                     <p class="mb-4">Analizar los contratos ya adjudicados proporciona valiosa información sobre el tipo de proyectos que se están ganando y quiénes son los proveedores exitosos, lo que puede guiar futuras alianzas o estrategias:</p>
-                    <div class="overflow-x-auto rounded-lg shadow-md mb-8">
+                    <div class="table-container">
                         <table class="min-w-full bg-white">
                             <thead>
                                 <tr>
