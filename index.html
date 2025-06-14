@@ -160,13 +160,13 @@
     <nav class="top-nav">
         <div class="wiki-container mx-auto flex justify-between items-center">
             <div class="flex space-x-4">
-                <a href="#" class="font-bold">Artículo</a>
-                <a href="#">Discusión</a>
+                <a href="index.html" class="font-bold">Inicio</a>
+                <a href="proyectos.html" target="_blank">Proyectos</a>
             </div>
             <div class="flex space-x-4">
-                <a href="#">Leer</a>
-                <a href="#">Editar</a>
-                <a href="#">Ver historial</a>
+                <a href="lineatiempo.html" target="_blank">Línea de Tiempo</a>
+                <a href="infografia.html" target="_blank">Infografía</a>
+                <a href="investigacion.pdf" target="_blank">Investigación</a>
             </div>
         </div>
     </nav>
@@ -177,13 +177,13 @@
             <div class="mb-8">
                 <h3 class="font-bold mb-2">Navegación</h3>
                 <ul>
-                    <li><a href="#identificacion">Identificación de Contratos</a></li>
-                    <li><a href="#clasificacion">Clasificación por Sector</a></li>
-                    <li><a href="#costos">Rangos de Costos</a></li>
-                    <li><a href="#oportunidades">Oportunidades</a></li>
+                    <li><a href="#compradores-ia">Identificación de Contratos</a></li>
+                    <li><a href="#tipos-proyectos-ia">Clasificación por Sector</a></li>
+                    <li><a href="#estimacion-costos">Rangos de Costos</a></li>
+                    <li><a href="#oportunidades-ia">Oportunidades</a></li>
                     <li><a href="#representativos">Contratos Representativos</a></li>
                     <li><a href="#conclusiones">Conclusiones</a></li>
-                    <li><a href="#podcast">Podcast</a></li>
+                    <li><a href="#" onclick="openPodcastModal(); return false;">Podcast</a></li>
                 </ul>
             </div>
             <div class="mb-8">
@@ -211,13 +211,13 @@
                 <div class="toc w-full md:w-2/3 lg:w-1/2 mb-8">
                     <p class="text-center font-bold">Contenido</p>
                     <ul>
-                        <li><a href="#identificacion"><span class="toc-number">1</span>Identificación de Contratos de IA</a></li>
-                        <li><a href="#clasificacion"><span class="toc-number">2</span>Clasificación de Proyectos por Sector</a></li>
-                        <li><a href="#costos"><span class="toc-number">3</span>Rangos de Costos</a></li>
-                        <li><a href="#oportunidades"><span class="toc-number">4</span>Oportunidades para Empresas</a></li>
+                        <li><a href="#compradores-ia"><span class="toc-number">1</span>Identificación de Contratos de IA</a></li>
+                        <li><a href="#tipos-proyectos-ia"><span class="toc-number">2</span>Clasificación de Proyectos por Sector</a></li>
+                        <li><a href="#estimacion-costos"><span class="toc-number">3</span>Rangos de Costos</a></li>
+                        <li><a href="#oportunidades-ia"><span class="toc-number">4</span>Oportunidades para Empresas</a></li>
                         <li><a href="#representativos"><span class="toc-number">5</span>Contratos Representativos</a></li>
                         <li><a href="#conclusiones"><span class="toc-number">6</span>Conclusiones</a></li>
-                        <li><a href="#podcast"><span class="toc-number">7</span>Podcast: Análisis Detallado</a></li>
+                        <li><a href="#" onclick="openPodcastModal(); return false;"><span class="toc-number">7</span>Podcast: Análisis Detallado</a></li>
                     </ul>
                 </div>
 
@@ -296,7 +296,6 @@
                                     <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Valor (Precio Base)</th>
                                     <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Modalidad</th>
                                     <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Estado Actual</th>
-                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Enlace al Proceso</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -307,7 +306,6 @@
                                     <td class="py-3 px-4">$2,500,000,000</td>
                                     <td class="py-3 px-4">Régimen Especial</td>
                                     <td class="py-3 px-4">Presentación de oferta</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4">CO1.REQ.8108643</td>
@@ -316,7 +314,6 @@
                                     <td class="py-3 px-4">$70,000,000</td>
                                     <td class="py-3 px-4">Régimen Especial</td>
                                     <td class="py-3 px-4">Presentación de oferta</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4">CO1.REQ.8028071</td>
@@ -325,7 +322,6 @@
                                     <td class="py-3 px-4">$25,212,813</td>
                                     <td class="py-3 px-4">Régimen Especial</td>
                                     <td class="py-3 px-4">Presentación de oferta</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4">CO1.REQ.7890353</td>
@@ -334,7 +330,6 @@
                                     <td class="py-3 px-4">$17,666,740</td>
                                     <td class="py-3 px-4">Régimen Especial</td>
                                     <td class="py-3 px-4">Presentación de oferta</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -351,7 +346,6 @@
                                     <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Descripción de la Oportunidad</th>
                                     <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Valor Adjudicado</th>
                                     <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Proveedor Adjudicado</th>
-                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Enlace al Proceso</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -361,7 +355,6 @@
                                     <td class="py-3 px-4">Suministro de plataforma de servicios jurídicos avanzados con asistente de IA para la defensa litigiosa.</td>
                                     <td class="py-3 px-4">$5,000,000</td>
                                     <td class="py-3 px-4">TIRANT LO BLANCH</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4">CO1.REQ.6912677</td>
@@ -369,7 +362,6 @@
                                     <td class="py-3 px-4">Servicios profesionales para extracción, transformación y cargue de información estadística en el marco del proyecto Tángara (IA).</td>
                                     <td class="py-3 px-4">$8,400,000</td>
                                     <td class="py-3 px-4">EDIMER GONZALEZ CIFUENTES</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4">CO1.REQ.6695249</td>
@@ -377,7 +369,6 @@
                                     <td class="py-3 px-4">Suscripción anual para 10 licencias de IA en plataforma jurídica vLex.</td>
                                     <td class="py-3 px-4">$22,808,016</td>
                                     <td class="py-3 px-4">COLOMBIA INFORMACION LEGAL SAS</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                                 <tr>
                                     <td class="py-3 px-4">CO1.REQ.7711091</td>
@@ -385,7 +376,6 @@
                                     <td class="py-3 px-4">Construir parámetros comportamentales para el entrenamiento de una entrevista con Inteligencia Artificial.</td>
                                     <td class="py-3 px-4">$22,769,368</td>
                                     <td class="py-3 px-4">SUSANA GARCIA CASALLAS</td>
-                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
                                 </tr>
                             </tbody>
                         </table>
