@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos de IA en Contratación Pública - Colombia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .category-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-security { background: #fee2e2; color: #dc2626; }
+        .badge-health { background: #dcfce7; color: #16a34a; }
+        .badge-education { background: #dbeafe; color: #2563eb; }
+        .badge-innovation { background: #f3e8ff; color: #9333ea; }
+        .badge-infrastructure { background: #fff7ed; color: #ea580c; }
+        .badge-finance { background: #f0fdf4; color: #15803d; }
+        .badge-justice { background: #f1f5f9; color: #0f172a; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-16 relative">
+            <a href="index.html" class="absolute left-0 top-0 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Volver al Inicio
+            </a>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Proyectos de IA en Contratación Pública</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Catálogo detallado de proyectos de Inteligencia Artificial en el sector público colombiano</p>
+        </header>
+
+        <!-- Filtros -->
+        <div class="mb-8 flex flex-wrap gap-4 justify-center">
+            <button class="px-4 py-2 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors" onclick="filterProjects('all')">Todos</button>
+            <button class="px-4 py-2 rounded-full bg-red-100 text-red-800 hover:bg-red-200 transition-colors" onclick="filterProjects('security')">Seguridad</button>
+            <button class="px-4 py-2 rounded-full bg-green-100 text-green-800 hover:bg-green-200 transition-colors" onclick="filterProjects('health')">Salud</button>
+            <button class="px-4 py-2 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors" onclick="filterProjects('education')">Educación</button>
+            <button class="px-4 py-2 rounded-full bg-purple-100 text-purple-800 hover:bg-purple-200 transition-colors" onclick="filterProjects('innovation')">Innovación</button>
+            <button class="px-4 py-2 rounded-full bg-orange-100 text-orange-800 hover:bg-orange-200 transition-colors" onclick="filterProjects('infrastructure')">Infraestructura</button>
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Proyecto 1 -->
+            <div class="project-card bg-white rounded-lg shadow-md p-6" data-category="security">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Sistema de Ciberseguridad IA</h3>
+                    <span class="category-badge badge-security">Seguridad</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">Entidad: MinTIC</p>
+                    <p class="text-gray-600">Valor: $234,000,000,000</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-gray-900">Características:</h4>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Detección de amenazas en tiempo real</li>
+                        <li>Análisis predictivo de vulnerabilidades</li>
+                        <li>Automatización de respuestas</li>
+                    </ul>
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <a href="#" class="text-blue-600 hover:underline">Ver detalles completos →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="project-card bg-white rounded-lg shadow-md p-6" data-category="health">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Analítica Predictiva en Salud</h3>
+                    <span class="category-badge badge-health">Salud</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">Entidad: MinSalud</p>
+                    <p class="text-gray-600">Valor: $150,000,000</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-gray-900">Características:</h4>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Predicción de brotes epidemiológicos</li>
+                        <li>Optimización de recursos hospitalarios</li>
+                        <li>Análisis de patrones de enfermedad</li>
+                    </ul>
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <a href="#" class="text-blue-600 hover:underline">Ver detalles completos →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 3 -->
+            <div class="project-card bg-white rounded-lg shadow-md p-6" data-category="education">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Plataforma Educativa IA</h3>
+                    <span class="category-badge badge-education">Educación</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">Entidad: MEN</p>
+                    <p class="text-gray-600">Valor: $2,900,000,000</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-gray-900">Características:</h4>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Personalización de aprendizaje</li>
+                        <li>Análisis de rendimiento estudiantil</li>
+                        <li>Recomendaciones adaptativas</li>
+                    </ul>
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <a href="#" class="text-blue-600 hover:underline">Ver detalles completos →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 4 -->
+            <div class="project-card bg-white rounded-lg shadow-md p-6" data-category="innovation">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Centro de Innovación IA</h3>
+                    <span class="category-badge badge-innovation">Innovación</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">Entidad: MinCiencias</p>
+                    <p class="text-gray-600">Valor: $4,800,000,000</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-gray-900">Características:</h4>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Investigación en IA avanzada</li>
+                        <li>Desarrollo de prototipos</li>
+                        <li>Transferencia tecnológica</li>
+                    </ul>
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <a href="#" class="text-blue-600 hover:underline">Ver detalles completos →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 5 -->
+            <div class="project-card bg-white rounded-lg shadow-md p-6" data-category="infrastructure">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Ciudad Inteligente</h3>
+                    <span class="category-badge badge-infrastructure">Infraestructura</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">Entidad: Alcaldía de Bogotá</p>
+                    <p class="text-gray-600">Valor: $3,500,000,000</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-gray-900">Características:</h4>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Gestión de tráfico inteligente</li>
+                        <li>Monitoreo ambiental</li>
+                        <li>Servicios públicos optimizados</li>
+                    </ul>
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <a href="#" class="text-blue-600 hover:underline">Ver detalles completos →</a>
+                </div>
+            </div>
+
+            <!-- Proyecto 6 -->
+            <div class="project-card bg-white rounded-lg shadow-md p-6" data-category="justice">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Sistema Judicial IA</h3>
+                    <span class="category-badge badge-justice">Justicia</span>
+                </div>
+                <div class="mb-4">
+                    <p class="text-gray-600">Entidad: ANDJE</p>
+                    <p class="text-gray-600">Valor: $2,500,000,000</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-semibold text-gray-900">Características:</h4>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Análisis de jurisprudencia</li>
+                        <li>Predicción de fallos</li>
+                        <li>Automatización de procesos</li>
+                    </ul>
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <a href="#" class="text-blue-600 hover:underline">Ver detalles completos →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumen Estadístico -->
+        <div class="mt-16 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Resumen de Inversión en IA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center p-4 bg-blue-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-blue-800">Inversión Total</h3>
+                    <p class="text-2xl font-bold text-blue-900">$248,000,000,000</p>
+                </div>
+                <div class="text-center p-4 bg-green-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-green-800">Proyectos Activos</h3>
+                    <p class="text-2xl font-bold text-green-900">24</p>
+                </div>
+                <div class="text-center p-4 bg-purple-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-purple-800">Entidades Involucradas</h3>
+                    <p class="text-2xl font-bold text-purple-900">12</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterProjects(category) {
+            const projects = document.querySelectorAll('.project-card');
+            projects.forEach(project => {
+                if (category === 'all' || project.dataset.category === category) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

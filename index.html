@@ -44,7 +44,7 @@
             list-style-type: none;
             padding-left: 0;
         }
-         .toc > ul > li {
+        .toc > ul > li {
             margin-bottom: 0.25rem;
         }
         .toc a {
@@ -89,6 +89,57 @@
         .close-button:hover {
             color: #000;
         }
+        .top-nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 0.5rem 0;
+        }
+        .top-nav a {
+            color: #0645ad;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        .top-nav a:hover {
+            text-decoration: underline;
+        }
+        .wiki-sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #a2a9b1;
+            padding: 1rem;
+        }
+        .wiki-sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .wiki-sidebar li {
+            margin-bottom: 0.5rem;
+        }
+        .wiki-sidebar a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+        .wiki-sidebar a:hover {
+            text-decoration: underline;
+        }
+        .wiki-main {
+            flex: 1;
+            padding: 1rem;
+        }
+        .wiki-header {
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .wiki-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .wiki-header .subtitle {
+            color: #54595d;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body class="text-[#202122]">
@@ -105,12 +156,56 @@
         </div>
     </div>
 
-    <div class="wiki-container mx-auto p-4 md:p-8">
-        <h1 class="text-4xl font-bold border-b pb-4 mb-4">Contratación Pública de Inteligencia Artificial en Colombia</h1>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            
-            <div class="lg:col-span-3 bg-white p-6 rounded-lg shadow-sm border border-gray-200 wiki-content">
+    <!-- Barra de navegación superior -->
+    <nav class="top-nav">
+        <div class="wiki-container mx-auto flex justify-between items-center">
+            <div class="flex space-x-4">
+                <a href="#" class="font-bold">Artículo</a>
+                <a href="#">Discusión</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#">Leer</a>
+                <a href="#">Editar</a>
+                <a href="#">Ver historial</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-container mx-auto flex">
+        <!-- Barra lateral -->
+        <aside class="wiki-sidebar hidden md:block">
+            <div class="mb-8">
+                <h3 class="font-bold mb-2">Navegación</h3>
+                <ul>
+                    <li><a href="#identificacion">Identificación de Contratos</a></li>
+                    <li><a href="#clasificacion">Clasificación por Sector</a></li>
+                    <li><a href="#costos">Rangos de Costos</a></li>
+                    <li><a href="#oportunidades">Oportunidades</a></li>
+                    <li><a href="#representativos">Contratos Representativos</a></li>
+                    <li><a href="#conclusiones">Conclusiones</a></li>
+                    <li><a href="#podcast">Podcast</a></li>
+                </ul>
+            </div>
+            <div class="mb-8">
+                <h3 class="font-bold mb-2">Herramientas</h3>
+                <ul>
+                    <li><a href="#" onclick="openPodcastModal(); return false;">🎧 Escuchar Podcast</a></li>
+                    <li><a href="investigacion.pdf" target="_blank">📄 Ver Investigación</a></li>
+                    <li><a href="infografia.html" target="_blank">📊 Ver Infografía</a></li>
+                    <li><a href="lineatiempo.html" target="_blank">⏳ Línea de Tiempo</a></li>
+                    <li><a href="proyectos.html" target="_blank">📋 Catálogo de Proyectos</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="wiki-main">
+            <header class="wiki-header">
+                <h1>Contratación Pública de Inteligencia Artificial en Colombia</h1>
+                <div class="subtitle">Análisis de oportunidades en el sector público (2024-2025)</div>
+            </header>
+
+            <div class="wiki-content">
                 <p class="mb-4">A partir de enero de 2024 se observa en Colombia un creciente número de contratos públicos relacionados con <strong>Inteligencia Artificial (IA)</strong> y técnicas asociadas como el <strong>aprendizaje automático (machine learning)</strong>, el <strong>procesamiento de lenguaje natural</strong>, la <strong>visión por computador</strong> y el <strong>análisis predictivo</strong>. Utilizando datos abiertos del SECOP II (Sistema Electrónico de Contratación Pública), se han identificado patrones de contratación en distintos sectores y en todas las etapas del proceso contractual.</p>
 
                 <div class="toc w-full md:w-2/3 lg:w-1/2 mb-8">
@@ -126,185 +221,246 @@
                     </ul>
                 </div>
 
-                <section id="identificacion">
-                    <h2><span class="toc-number">1</span> Identificación de Contratos de IA en 2024-2025</h2>
-                    <p>La exploración de los datos abiertos del <strong>SECOP II</strong> revela múltiples procesos de contratación cuyo objeto menciona explícitamente términos de IA. Entre los ejemplos destacados se incluyen:</p>
-                    <ul class="list-disc pl-6 space-y-2 mt-4">
-                        <li><strong>Ciberseguridad con IA:</strong> El Ministerio TIC (MinTIC) lanzó en 2024 una convocatoria para adquirir una herramienta de seguridad cibernética basada en IA y ML para detectar y responder a amenazas.</li>
-                        <li><strong>Analítica de datos en salud:</strong> El Ministerio de Salud (MinSalud) inició en 2025 un proceso para implementar un modelo de analítica de datos con IA, articulado con el modelo preventivo y predictivo de salud.</li>
-                        <li><strong>Asesoría en tecnologías emergentes:</strong> En 2024, el MinTIC buscó consultoría para asesoría en IA y la revisión de la Política de Gobierno Digital.</li>
-                        <li><strong>Visión por computador:</strong> Entidades como la Contraloría Departamental de Norte de Santander adquirieron en 2024 un sistema biométrico de reconocimiento facial para control de acceso.</li>
-                        <li><strong>Formación y capacitación en IA:</strong> Universidades y entidades públicas contrataron múltiples cursos y talleres sobre IA, machine learning e IA generativa.</li>
+                <!-- Resto del contenido existente -->
+                <section id="compradores-ia">
+                    <h2 class="section-title">1. ¿Quiénes Impulsan la Inversión en IA en el Sector Público?</h2>
+                    <p class="mb-4">Identificar a los principales actores es crucial para cualquier estrategia de mercado. Las siguientes entidades destacan por su volumen o valor de contratación en servicios y productos de IA:</p>
+
+                    <h3 class="subsection-title">Entidades del Orden Nacional: Un Enfoque Central</h3>
+                    <ul class="list-disc ml-6 mb-4">
+                        <li><strong>Fondo Único de TIC (MinTIC):</strong> Sin duda, el líder indiscutible. Con proyectos que a menudo superan los $200 mil millones de pesos, el MinTIC se enfoca en la implementación de Centros de IA y plataformas robustas de datos, posicionándose como un catalizador principal de la transformación digital basada en IA.</li>
+                        <li><strong>ICBF (Instituto Colombiano de Bienestar Familiar):</strong> Este instituto ha realizado inversiones significativas, con contratos que exceden los $1.3 mil millones de pesos, para integrar Big Data, Machine Learning e IA en sus procesos de toma de decisiones, mejorando así la atención a la primera infancia y familias.</li>
+                        <li><strong>SENA:</strong> Fundamental en la formación de talento, el SENA contrata masivamente instructores y expertos en IA, además de financiar proyectos de investigación aplicada que fortalecen la capacidad tecnológica del país.</li>
+                        <li><strong>Agencia Nacional de Defensa Jurídica del Estado (ANDJE):</strong> Con inversiones superiores a los $2.5 mil millones de pesos, la ANDJE utiliza soluciones de software con IA para optimizar la gestión de litigios, agilizando procesos legales y mejorando la eficiencia judicial.</li>
+                        <li><strong>Minciencias:</strong> Este ministerio juega un rol clave en el ecosistema, financiando proyectos de investigación y desarrollo que incorporan IA, con un énfasis particular en áreas críticas como la salud y las tecnologías emergentes.</li>
+                    </ul>
+
+                    <h3 class="subsection-title">Entidades del Orden Territorial: Crecimiento Local y Regional</h3>
+                    <ul class="list-disc ml-6 mb-4">
+                        <li><strong>Gobernación del Cauca:</strong> Una entidad altamente proactiva, con múltiples contratos orientados a fortalecer su sistema de información socioeconómico (Tángara) a través de la IA, el análisis de datos y la implementación de proyectos vinculados a los Objetivos de Desarrollo Sostenible (ODS).</li>
+                        <li><strong>Gobernación del Valle del Cauca:</strong> Su inversión en la automatización de procesos y la mejora de la participación ciudadana mediante motores de inteligencia de negocios e IA, con contratos que alcanzan los $460 millones de pesos, demuestra un compromiso claro con la modernización.</li>
+                        <li><strong>Alcaldías (Zipaquirá, Pereira, etc.):</strong> Varias alcaldías a nivel nacional están mostrando un interés creciente en la IA para modernizar la atención al ciudadano y optimizar la gestión de la movilidad urbana, abriendo un abanico de oportunidades a nivel local.</li>
                     </ul>
                 </section>
 
-                <section id="clasificacion">
-                    <h2><span class="toc-number">2</span> Clasificación de Proyectos de IA por Sector</h2>
-                    <p>Los proyectos identificados se pueden agrupar por sectores o aplicaciones, evidenciando diferentes enfoques en la adopción de la IA:</p>
-                    <h3>Sector TIC y Gobierno Digital</h3>
-                    <p>Predominan proyectos para fortalecer infraestructura y estrategia digital, como herramientas de ciberseguridad, gestión de Big Data, consultorías para políticas de IA y centros de innovación como el de Zipaquirá.</p>
-                    <h3>Sector Salud</h3>
-                    <p>Emergen proyectos que aplican IA al análisis de datos para medicina preventiva, como el proceso de MinSalud para analítica predictiva en epidemiología e inmunizaciones. El potencial de crecimiento en este sector es alto.</p>
-                    <h3>Seguridad, Defensa y Justicia</h3>
-                    <p>Se observan aplicaciones de visión por computador en videovigilancia y biometría. La capacitación en IA también es relevante para las fuerzas armadas. El sector justicia ha explorado IA en proyectos piloto para gestión documental.</p>
-                    <h3>Sector Educación y Formación</h3>
-                    <p>Las universidades públicas y otras instituciones contratan principalmente servicios de capacitación (cursos, diplomados) para desarrollar habilidades en IA en estudiantes y funcionarios.</p>
-                    <h3>Otras Áreas</h3>
-                    <p>Sectores como transporte, agricultura y medio ambiente aún no muestran un volumen significativo de contrataciones, pero se prevé que generen demanda especializada en el futuro para aplicaciones como gestión de tráfico, predicciones agrícolas y análisis climático.</p>
+                <section id="tipos-proyectos-ia">
+                    <h2 class="section-title">2. Categorías Clave: Proyectos de IA con Mayor Demanda</h2>
+                    <p class="mb-4">El mercado se diversifica en varias categorías de proyectos, representando las principales líneas de negocio para empresas especializadas en IA:</p>
+
+                    <ol class="list-decimal ml-6 mb-4">
+                        <li>
+                            <h3 class="subsection-title">Plataformas de Datos y Analítica Avanzada</h3>
+                            <p><strong>Descripción:</strong> Se centran en la creación y el mantenimiento de complejos sistemas de Big Data, Datalakes y plataformas de analítica. Utilizan técnicas de Machine Learning e IA para procesar volúmenes masivos de información, extrayendo conocimientos profundos y valiosos insights para la toma de decisiones estratégicas.</p>
+                            <p><strong>Ejemplos:</strong> Proyectos de alto impacto como los contratos del ICBF (CO1.PCCNTR.2889501) y del Fondo Único de TIC (CO1.PCCNTR.5696648) son representativos de esta categoría.</p>
+                            <p><strong>Valor Estimado:</strong> Estos son los proyectos de mayor envergadura económica, con valores que oscilan entre los $400 millones y superan los $3.9 mil millones de pesos.</p>
+                        </li>
+                        <li>
+                            <h3 class="subsection-title">Servicios Profesionales y Consultoría Especializada</h3>
+                            <p><strong>Descripción:</strong> Incluyen el apoyo estratégico en la estructuración de políticas públicas relacionadas con IA, el diseño de arquitecturas de software avanzadas y la coordinación de proyectos tecnológicos complejos que integran componentes de Inteligencia Artificial.</p>
+                            <p><strong>Ejemplos:</strong> Se observan múltiples contratos en entidades como la Gobernación del Cauca, Minciencias y el Departamento Nacional de Planeación, que buscan experticia externa en estas áreas.</p>
+                            <p><strong>Valor Estimado:</strong> Generalmente, estos servicios tienen un valor entre $15 millones y $150 millones de pesos, dependiendo de la duración, el alcance y el nivel de especialización requerido.</p>
+                        </li>
+                        <li>
+                            <h3 class="subsection-title">Automatización y Optimización de Procesos</h3>
+                            <p><strong>Descripción:</strong> Consisten en el desarrollo e implementación de soluciones que optimizan la eficiencia operativa, tales como chatbots inteligentes impulsados por IA, sistemas de Automatización Robótica de Procesos (RPA), herramientas de agendamiento automático y plataformas para la gestión documental inteligente.</p>
+                            <p><strong>Ejemplos:</strong> Casos notables incluyen contratos de la E.S.E Hospital Universitario de Santander (CO1.PCCNTR.6020821) y del Municipio de Villapinzón (CO1.PCCNTR.6847567).</p>
+                            <p><strong>Valor Estimado:</strong> El rango de valor para estos proyectos se sitúa entre $20 millones y $200 millones de pesos.</p>
+                        </li>
+                        <li>
+                            <h3 class="subsection-title">Ciberseguridad con Inteligencia Artificial</h3>
+                            <p><strong>Descripción:</strong> Abordan la adquisición e implementación de soluciones de ciberseguridad de última generación que aprovechan la IA para la detección proactiva y la respuesta autónoma a amenazas cibernéticas, fortaleciendo así la infraestructura digital del Estado.</p>
+                            <p><strong>Ejemplos:</strong> Contratos relevantes de la UNP (CO1.PCCNTR.3743702) y la Comisión de Regulación de Agua Potable (CO1.PCCNTR.2999732) demuestran la creciente demanda en este ámbito.</p>
+                            <p><strong>Valor Estimado:</strong> Estos proyectos varían en valor desde los $130 millones hasta más de $680 millones de pesos, reflejando la criticidad de la seguridad.</p>
+                        </li>
+                        <li>
+                            <h3 class="subsection-title">Educación y Fortalecimiento de Capacidades en IA</h3>
+                            <p><strong>Descripción:</strong> Implican el diseño y la impartición de diplomados, cursos y talleres especializados en Inteligencia Artificial, dirigidos a funcionarios públicos, docentes y la ciudadanía en general, con el objetivo de cerrar la brecha de conocimiento y fomentar una cultura de innovación.</p>
+                            <p><strong>Ejemplos:</strong> Destacan los contratos de la UNIVERSIDAD EAFIT con el MEN (CO1.PCCNTR.6649510), que asciende a $2.9 mil millones de pesos, y múltiples iniciativas del SENA en esta línea.</p>
+                        </li>
+                    </ol>
                 </section>
 
-                <section id="costos">
-                    <h2><span class="toc-number">3</span> Rangos de Costos de Proyectos de IA</h2>
-                    <p>Los contratos presentan rangos de inversión muy variados:</p>
-                     <ul class="list-disc pl-6 space-y-2 mt-4">
-                        <li><strong>Proyectos pequeños (&lt; $10M COP):</strong> Típicamente capacitación, estudios preliminares o adquisiciones menores como sistemas de control de acceso.</li>
-                        <li><strong>Proyectos medianos ($50M - $300M COP):</strong> Incluyen equipamiento específico, consultorías especializadas o desarrollo de pruebas de concepto.</li>
-                        <li><strong>Proyectos grandes (&gt; $1.000M COP):</strong> Corresponden a implementaciones a escala nacional como sistemas de ciberseguridad o plataformas integrales de analítica de datos para entidades grandes.</li>
-                    </ul>
-                    <p class="mt-4">Existe una polarización: numerosos contratos pequeños que reflejan exploraciones iniciales y unos cuantos contratos grandes que concentran la mayor parte de la inversión.</p>
-                </section>
+                <section id="oportunidades-ia">
+                    <h2 class="section-title">3. Oportunidades Actuales: Procesos de Contratación de IA Abiertos y Recientes</h2>
+                    <p class="mb-4">A continuación, presentamos un extracto de las oportunidades más prometedoras, tanto abiertas (que requieren acción inmediata) como las recientemente adjudicadas (que sirven como indicadores clave del mercado).</p>
 
-                <section id="oportunidades">
-                    <h2><span class="toc-number">4</span> Oportunidades para Empresas Especializadas en IA</h2>
-                    <p>Se revelan áreas de oportunidad concretas para empresas con experiencia:</p>
-                    <ul class="list-disc pl-6 space-y-2 mt-4">
-                        <li><strong>Ciberseguridad y Defensa Cibernética:</strong> Alta demanda de soluciones de detección de amenazas con IA y ML.</li>
-                        <li><strong>Analítica de Datos e Inteligencia de Negocios:</strong> Oportunidades para desarrollar modelos predictivos y plataformas de Big Data en salud y gobierno.</li>
-                        <li><strong>Visión por Computador y Biometría:</strong> Nicho en crecimiento para control de accesos, seguridad ciudadana y ciudades inteligentes.</li>
-                        <li><strong>Procesamiento de Lenguaje Natural (PLN):</strong> Potencial en chatbots, atención ciudadana automatizada y análisis de documentos en el sector justicia.</li>
-                        <li><strong>Formación y Transferencia de Conocimiento:</strong> Mercado activo para cursos, diplomados y talleres en IA.</li>
-                        <li><strong>Participación desde Etapas Tempranas:</strong> Responder a Solicitudes de Información (RFI) permite posicionarse e influir en futuros pliegos.</li>
-                    </ul>
-                </section>
-                
-                <section id="representativos">
-                    <h2><span class="toc-number">5</span> Contratos Representativos de IA (2024-2025)</h2>
-                    <table class="w-full text-left border-collapse border border-gray-300 mt-4">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="p-2 border border-gray-300">Proyecto</th>
-                                <th class="p-2 border border-gray-300">Entidad</th>
-                                <th class="p-2 border border-gray-300">Sector</th>
-                                <th class="p-2 border border-gray-300">Valor Estimado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-2 border border-gray-300">Herramienta de IA para Ciberseguridad</td>
-                                <td class="p-2 border border-gray-300">MinTIC</td>
-                                <td class="p-2 border border-gray-300">TIC</td>
-                                <td class="p-2 border border-gray-300">Alto (Miles de Millones)</td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-300">Modelo de Analítica Predictiva en Salud</td>
-                                <td class="p-2 border border-gray-300">MinSalud</td>
-                                <td class="p-2 border border-gray-300">Salud</td>
-                                <td class="p-2 border border-gray-300">Alto (> $1.000M)</td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-300">Asesoría en IA y Política Digital</td>
-                                <td class="p-2 border border-gray-300">MinTIC</td>
-                                <td class="p-2 border border-gray-300">Gobierno Digital</td>
-                                <td class="p-2 border border-gray-300">Medio (Cientos de Millones)</td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-300">Data Center para Centro de IA</td>
-                                <td class="p-2 border border-gray-300">Fondo TIC / Zipaquirá</td>
-                                <td class="p-2 border border-gray-300">Innovación Regional</td>
-                                <td class="p-2 border border-gray-300">Medio (Cientos de Millones)</td>
-                            </tr>
-                             <tr>
-                                <td class="p-2 border border-gray-300">Control de Acceso con Reconocimiento Facial</td>
-                                <td class="p-2 border border-gray-300">Contraloría N. Santander</td>
-                                <td class="p-2 border border-gray-300">Seguridad Física</td>
-                                <td class="p-2 border border-gray-300">Bajo (~$9M)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
+                    <h3 class="subsection-title">Oportunidades Abiertas: ¡Actúe Ahora!</h3>
+                    <p class="mb-4">Estos procesos están en fase activa de "Presentación de oferta" y representan una ventana de tiempo limitada para participar:</p>
+                    <div class="overflow-x-auto rounded-lg shadow-md mb-8">
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">ID del Proceso</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Entidad Contratante</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Descripción de la Oportunidad</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Valor (Precio Base)</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Modalidad</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Estado Actual</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Enlace al Proceso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.7886187</td>
+                                    <td class="py-3 px-4">EMCALI E.I.C.E. E.S.P.</td>
+                                    <td class="py-3 px-4">Fortalecer capacidades comerciales y de relacionamiento con el cliente mediante un prototipo de ecosistema digital con IA.</td>
+                                    <td class="py-3 px-4">$2,500,000,000</td>
+                                    <td class="py-3 px-4">Régimen Especial</td>
+                                    <td class="py-3 px-4">Presentación de oferta</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.8108643</td>
+                                    <td class="py-3 px-4">INSTITUTO AMAZÓNICO DE INVESTIGACIONES CIENTÍFICAS SINCHI</td>
+                                    <td class="py-3 px-4">Servicios profesionales en ciencia de datos geoespaciales para diseñar e implementar modelos de IA para monitoreo de coberturas, quemas y desarrollo forestal.</td>
+                                    <td class="py-3 px-4">$70,000,000</td>
+                                    <td class="py-3 px-4">Régimen Especial</td>
+                                    <td class="py-3 px-4">Presentación de oferta</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.8028071</td>
+                                    <td class="py-3 px-4">CORPORACIÓN COLOMBIA CREA TALENTO</td>
+                                    <td class="py-3 px-4">Desarrollo técnico y experiencia con IA para un evento de posicionamiento de Bogotá como hub de tecnología e innovación.</td>
+                                    <td class="py-3 px-4">$25,212,813</td>
+                                    <td class="py-3 px-4">Régimen Especial</td>
+                                    <td class="py-3 px-4">Presentación de oferta</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.7890353</td>
+                                    <td class="py-3 px-4">UNIVERSIDAD DE LOS LLANOS</td>
+                                    <td class="py-3 px-4">Adquisición de equipos de microscopía y análisis de imágenes para un proyecto de clasificación de carcinomas caninos usando IA (Redes Neuronales).</td>
+                                    <td class="py-3 px-4">$17,666,740</td>
+                                    <td class="py-3 px-4">Régimen Especial</td>
+                                    <td class="py-3 px-4">Presentación de oferta</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                 <section id="conclusiones">
-                    <h2><span class="toc-number">6</span> Conclusiones</h2>
-                    <p>El análisis muestra una clara tendencia al incremento en la adopción de soluciones de IA por parte del Estado colombiano. Aunque dominan proyectos piloto y etapas de planeación, ya existen contratos que incorporan IA en la operación gubernamental. Para las empresas especializadas, el sector público representa un campo de oportunidades en expansión, que requiere enfoques adaptados a cada dominio y el cumplimiento de la normativa de contratación. El Estado colombiano busca seguir las tendencias internacionales de forma responsable, considerando lineamientos éticos y de seguridad, sentando las bases para un aprendizaje institucional sobre cómo aprovechar la IA en beneficio de la ciudadanía.</p>
-                </section>
-
-                <section id="podcast" class="mt-8">
-                    <h2><span class="toc-number">7</span> Podcast: Análisis Detallado</h2>
-                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                        <p class="mb-4">Escuche el análisis detallado sobre las oportunidades de IA en la contratación pública colombiana:</p>
-                        <audio controls class="w-full">
-                            <source src="podcast.wav" type="audio/wav">
-                            Su navegador no soporta el elemento de audio.
-                        </audio>
+                    <h3 class="subsection-title">Procesos Recientemente Adjudicados: Inteligencia de Mercado y Posibles Alianzas</h3>
+                    <p class="mb-4">Analizar los contratos ya adjudicados proporciona valiosa información sobre el tipo de proyectos que se están ganando y quiénes son los proveedores exitosos, lo que puede guiar futuras alianzas o estrategias:</p>
+                    <div class="overflow-x-auto rounded-lg shadow-md mb-8">
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">ID del Proceso</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Entidad Contratante</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Descripción de la Oportunidad</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Valor Adjudicado</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Proveedor Adjudicado</th>
+                                    <th class="py-3 px-4 uppercase font-semibold text-xs text-gray-600 bg-gray-200">Enlace al Proceso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.6813229</td>
+                                    <td class="py-3 px-4">CONCEJO MUNICIPAL DE MEDELLIN</td>
+                                    <td class="py-3 px-4">Suministro de plataforma de servicios jurídicos avanzados con asistente de IA para la defensa litigiosa.</td>
+                                    <td class="py-3 px-4">$5,000,000</td>
+                                    <td class="py-3 px-4">TIRANT LO BLANCH</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.6912677</td>
+                                    <td class="py-3 px-4">GOBERNACIÓN DEL CAUCA</td>
+                                    <td class="py-3 px-4">Servicios profesionales para extracción, transformación y cargue de información estadística en el marco del proyecto Tángara (IA).</td>
+                                    <td class="py-3 px-4">$8,400,000</td>
+                                    <td class="py-3 px-4">EDIMER GONZALEZ CIFUENTES</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.6695249</td>
+                                    <td class="py-3 px-4">FINANCIERA DE DESARROLLO NACIONAL S.A.</td>
+                                    <td class="py-3 px-4">Suscripción anual para 10 licencias de IA en plataforma jurídica vLex.</td>
+                                    <td class="py-3 px-4">$22,808,016</td>
+                                    <td class="py-3 px-4">COLOMBIA INFORMACION LEGAL SAS</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">CO1.REQ.7711091</td>
+                                    <td class="py-3 px-4">SENA SECRETARIA GENERAL</td>
+                                    <td class="py-3 px-4">Construir parámetros comportamentales para el entrenamiento de una entrevista con Inteligencia Artificial.</td>
+                                    <td class="py-3 px-4">$22,769,368</td>
+                                    <td class="py-3 px-4">SUSANA GARCIA CASALLAS</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Ver Proceso</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
+                <section id="estimacion-costos">
+                    <h2 class="section-title">4. Estrategias de Precios: Entendiendo los Valores de Licitación</h2>
+                    <p class="mb-4">El análisis de los valores de contrato (históricos) y precios base (abiertos) revela una amplia gama de presupuestos, permitiendo a empresas con diferente escala posicionarse en nichos específicos:</p>
+
+                    <h3 class="subsection-title">Proyectos Estratégicos de Gran Escala (> $1,000 Millones COP)</h3>
+                    <ul class="list-disc ml-6 mb-4">
+                        <li><strong>Descripción:</strong> Incluyen la implementación de plataformas de IA a nivel nacional o departamental, la creación de centros de IA y el desarrollo de sistemas de analítica complejos.</li>
+                        <li><strong>Ejemplos:</strong> Proyectos emblemáticos del Fondo Único de TIC (superando los $234 mil millones y otros de $4.8 mil millones), la ANDJE ($4.8 mil millones, $2.5 mil millones) y el ICFES ($2.8 mil millones).</li>
+                        <li><strong>Recomendación:</strong> Estos proyectos demandan una sólida capacidad financiera, técnica y legal. Su adjudicación se realiza generalmente a través de Licitación Pública o convenios interadministrativos con entidades como FINDETER. Es crucial considerar alianzas estratégicas (Uniones Temporales) o contar con una presencia de mercado muy consolidada.</li>
+                    </ul>
+
+                    <h3 class="subsection-title">Proyectos de Mediana Escala ($100 Millones - $900 Millones COP)</h3>
+                    <ul class="list-disc ml-6 mb-4">
+                        <li><strong>Descripción:</strong> Desarrollo de soluciones departamentales, software especializado con IA y consultorías de alto nivel.</li>
+                        <li><strong>Ejemplos:</strong> Destacan proyectos en la Gobernación del Valle ($460 millones), la UNP ($460 millones, $686 millones) y EMCALI ($2.500 millones en un proceso abierto actual).</li>
+                        <li><strong>Recomendación:</strong> Representan un "punto dulce" para empresas con experiencia comprobada. Las modalidades de contratación varían entre Selección Abreviada y Contratación Directa (especialmente cuando se puede demostrar la exclusividad o alta especialización del proveedor).</li>
+                    </ul>
+
+                    <h3 class="subsection-title">Proyectos de Pequeña Escala (< $100 Millones COP)</h3>
+                    <ul class="list-disc ml-6 mb-4">
+                        <li><strong>Descripción:</strong> Se enfocan en servicios profesionales específicos, programas de capacitación en IA, adquisición de licencias de software con IA y proyectos piloto.</li>
+                        <li><strong>Ejemplos:</strong> Múltiples contratos de la Gobernación del Cauca, Minciencias, la JEP y diversas alcaldías.</li>
+                        <li><strong>Recomendación:</strong> Son una excelente vía de entrada al mercado público para construir un historial y ganar experiencia. La mayoría de estos se formalizan a través de Contratación Directa por servicios profesionales.</li>
+                    </ul>
+                </section>
+
+                <section id="conclusiones">
+                    <h2 class="section-title">5. Conclusiones y Estrategias Clave para el Éxito</h2>
+                    <p class="mb-4">Este análisis profundo del mercado de IA en la contratación pública colombiana nos permite delinear una serie de estrategias fundamentales:</p>
+
+                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                        <p class="text-blue-800 mb-2">Para una visión detallada de la evolución temporal de los proyectos, consulta nuestra <a href="lineatiempo.html" class="text-blue-600 hover:underline font-medium">Línea de Tiempo Interactiva</a> que muestra la cronología completa de implementación de IA en el sector público.</p>
+                        <p class="text-blue-800">Explora nuestro <a href="proyectos.html" class="text-blue-600 hover:underline font-medium">Catálogo de Proyectos</a> para ver el detalle completo de cada iniciativa de IA en el sector público.</p>
+                    </div>
+
+                    <ol class="list-decimal ml-6 mb-4">
+                        <li>
+                            <p><strong>Enfoque Estratégico en Entidades de Alto Gasto:</strong> La prioridad comercial debe ser establecer relaciones y ofertar a las entidades que consistentemente demuestran la mayor inversión y recurrencia en proyectos de IA: Fondo Único de TIC, ICBF, SENA, ANDJE, y las gobernaciones del Cauca y Valle del Cauca.</p>
+                        </li>
+                        <li>
+                            <p><strong>Diversificación Inteligente del Portafolio de Servicios:</strong> El mercado exige versatilidad. Una empresa debe estar preparada para ofrecer una gama de servicios que incluya:</p>
+                            <ul class="list-disc ml-6">
+                                <li><strong>Consultoría Estratégica:</strong> Ayudar a las entidades gubernamentales a definir sus hojas de ruta y estrategias de implementación de IA (ej. proyectos del DNP y Minciencias).</li>
+                                <li><strong>Desarrollo a la Medida:</strong> Capacidad para diseñar y construir plataformas robustas de analítica, Big Data y soluciones de automatización personalizadas.</li>
+                                <li><strong>Soluciones Verticales Especializadas:</strong> Adaptar y ofrecer productos de IA específicamente diseñados para sectores clave como Justicia (ANDJE, JEP), Salud (ICBF, Hospitales), Educación (MEN, SENA) y Seguridad (UNP).</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><strong>Monitoreo Proactivo de Procesos de "Solicitud de Información":</strong> Es vital identificar y participar activamente en las fases tempranas de los procesos de contratación, como las "solicitudes de información" o "estudios de mercado" (donde el <code>precio_base</code> es $0). Esto permite posicionar a la empresa, influir en la definición de requisitos técnicos futuros y asegurar invitaciones a las fases finales de licitación.</p>
+                        </li>
+                        <li>
+                            <p><strong>Adopción de un Modelo de Negocio Flexible:</strong></p>
+                            <ul class="list-disc ml-6">
+                                <li>Para contratos de gran magnitud, la formación de Uniones Temporales con otras empresas puede ser una estrategia clave para cumplir con los exigentes requisitos de experiencia y capacidad financiera.</li>
+                                <li>Para contratos de servicios profesionales, es esencial mantener un equipo de expertos listos para ser presentados rápidamente en procesos de Contratación Directa, aprovechando la agilidad que esta modalidad ofrece.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><strong>Atención Rigurosa a los Cronogramas:</strong> Los procesos de contratación pública tienen plazos definidos y estrictos. Es imperativo actuar con celeridad frente a las oportunidades identificadas, prestando especial atención a aquellas en fases críticas como "Presentación de oferta" o "Presentación de observaciones".</p>
+                        </li>
+                    </ol>
+
+                    <div class="note rounded-md p-4 mt-8 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800">
+                        <p class="font-semibold">Nota Importante:</p>
+                        <p>Este análisis ha sido generado exclusivamente a partir de los datos de investigación proporcionados, ofreciendo un panorama claro y lleno de oportunidades de alto valor para empresas especializadas en Inteligencia Artificial con la capacidad de ejecutar proyectos en el sector público colombiano.</p>
+                    </div>
+                </section>
             </div>
-
-            <aside class="lg:col-span-1">
-                <div class="infobox float-right w-full lg:w-auto text-sm">
-                    <table class="w-full">
-                        <tbody>
-                            <tr class="bg-gray-200">
-                                <th colspan="2" class="text-center p-2 text-base">Contratación de IA en Colombia</th>
-                            </tr>
-                             <tr>
-                                <td colspan="2" class="text-center p-2">
-                                    <div class="inline-block p-4 bg-blue-100 border border-blue-200 rounded-md">
-                                        <span class="text-5xl">🤖</span>
-                                    </div>
-                                    <p class="text-xs mt-1">Análisis de la adopción de la Inteligencia Artificial en el sector público.</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="p-2 text-left w-1/3">Periodo</th>
-                                <td class="p-2 text-left">2024 - 2025</td>
-                            </tr>
-                            <tr class="border-t">
-                                <th class="p-2 text-left">Fuente de Datos</th>
-                                <td class="p-2 text-left">SECOP II</td>
-                            </tr>
-                            <tr class="border-t">
-                                <th class="p-2 text-left">Sectores Clave</th>
-                                <td class="p-2 text-left">
-                                    <ul class="list-disc pl-5">
-                                        <li>TIC y Gobierno Digital</li>
-                                        <li>Salud</li>
-                                        <li>Seguridad y Defensa</li>
-                                        <li>Educación</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                             <tr class="border-t">
-                                <th class="p-2 text-left">Rango de Inversión</th>
-                                <td class="p-2 text-left">Desde &lt; $10M hasta &gt; $1.000M COP</td>
-                            </tr>
-                             <tr class="border-t">
-                                <th class="p-2 text-left">Oportunidades Principales</th>
-                                <td class="p-2 text-left">
-                                    <ul class="list-disc pl-5">
-                                        <li>Ciberseguridad</li>
-                                        <li>Analítica de Datos</li>
-                                        <li>Capacitación</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr class="border-t">
-                                <th class="p-2 text-left">Recursos</th>
-                                <td class="p-2 text-left">
-                                    <ul class="list-disc pl-5">
-                                        <li><a href="#" onclick="openPodcastModal(); return false;" class="text-blue-600 hover:underline">🎧 Escuchar Podcast</a></li>
-                                        <li><a href="investigacion.pdf" class="text-blue-600 hover:underline" target="_blank">📄 Ver Investigación Completa</a></li>
-                                        <li><a href="infografia.html" class="text-blue-600 hover:underline" target="_blank">📊 Ver Infografía</a></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </aside>
-
-        </div>
+        </main>
     </div>
 
     <script>
@@ -316,7 +472,6 @@
             document.getElementById('podcastModal').style.display = 'none';
         }
 
-        // Cerrar el modal si se hace clic fuera de él
         window.onclick = function(event) {
             var modal = document.getElementById('podcastModal');
             if (event.target == modal) {

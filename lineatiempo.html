@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Línea de Tiempo: Contratación Pública de IA en Colombia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background: #e5e7eb;
+            height: 100%;
+        }
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .timeline-dot:hover {
+            transform: translateX(-50%) scale(1.2);
+            background: #2563eb;
+        }
+        .timeline-content {
+            width: calc(50% - 40px);
+            margin-left: auto;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        .timeline-content:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            z-index: 100;
+            background: #1f2937;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1f2937 transparent transparent transparent;
+        }
+        .has-tooltip:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .category-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+        .category-security { background: #fee2e2; color: #dc2626; }
+        .category-health { background: #dcfce7; color: #16a34a; }
+        .category-education { background: #dbeafe; color: #2563eb; }
+        .category-innovation { background: #f3e8ff; color: #9333ea; }
+        .category-infrastructure { background: #fff7ed; color: #ea580c; }
+        .expand-button {
+            background: none;
+            border: none;
+            color: #3b82f6;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .expand-button:hover {
+            background: #eff6ff;
+        }
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .details-content.expanded {
+            max-height: 1000px;
+        }
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+            .timeline-dot {
+                left: 20px;
+            }
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+            .timeline-content:nth-child(odd) {
+                margin-left: 60px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-16 relative">
+            <a href="index.html" class="absolute left-0 top-0 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Volver al Inicio
+            </a>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Línea de Tiempo: IA en Contratación Pública</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Cronología detallada de la implementación de Inteligencia Artificial en el sector público colombiano</p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <span class="category-tag category-security">Seguridad</span>
+                <span class="category-tag category-health">Salud</span>
+                <span class="category-tag category-education">Educación</span>
+                <span class="category-tag category-innovation">Innovación</span>
+                <span class="category-tag category-infrastructure">Infraestructura</span>
+            </div>
+        </header>
+
+        <div class="relative">
+            <div class="timeline-line"></div>
+            
+            <div class="space-y-12">
+                <!-- 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot has-tooltip">
+                        <div class="tooltip">Inicio de la Transformación Digital</div>
+                    </div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <div class="text-sm text-blue-600 font-semibold mb-2">2024</div>
+                                <h3 class="text-xl font-bold text-gray-900">Inicio de la Transformación Digital</h3>
+                            </div>
+                            <span class="category-tag category-security">Seguridad</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">MinTIC lanza convocatoria para herramienta de ciberseguridad basada en IA</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Proyecto estratégico para fortalecer la seguridad digital del Estado. Incluye:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Detección de amenazas en tiempo real</li>
+                                            <li>Análisis predictivo de vulnerabilidades</li>
+                                            <li>Automatización de respuestas a incidentes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Inicio de consultoría para asesoría en IA y revisión de la Política de Gobierno Digital</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Proyecto de transformación digital que incluye:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Evaluación de capacidades actuales</li>
+                                            <li>Recomendaciones estratégicas</li>
+                                            <li>Plan de implementación</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Implementación de sistemas biométricos en entidades públicas</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Sistema de identificación biométrica que incluye:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Reconocimiento facial</li>
+                                            <li>Verificación de huellas dactilares</li>
+                                            <li>Autenticación multifactor</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q2 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot has-tooltip">
+                        <div class="tooltip">Expansión en el Sector Salud</div>
+                    </div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <div class="text-sm text-blue-600 font-semibold mb-2">Q2 2024</div>
+                                <h3 class="text-xl font-bold text-gray-900">Expansión en el Sector Salud</h3>
+                            </div>
+                            <span class="category-tag category-health">Salud</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">MinSalud inicia proyecto de analítica predictiva en salud</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Sistema de análisis predictivo que incluye:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Predicción de brotes epidemiológicos</li>
+                                            <li>Optimización de recursos hospitalarios</li>
+                                            <li>Análisis de patrones de enfermedad</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Desarrollo de modelos de IA para medicina preventiva</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Modelos de IA que incluyen:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Detección temprana de enfermedades</li>
+                                            <li>Recomendaciones personalizadas</li>
+                                            <li>Análisis de factores de riesgo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q3 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot has-tooltip">
+                        <div class="tooltip">Fortalecimiento Educativo</div>
+                    </div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <div class="text-sm text-blue-600 font-semibold mb-2">Q3 2024</div>
+                                <h3 class="text-xl font-bold text-gray-900">Fortalecimiento Educativo</h3>
+                            </div>
+                            <span class="category-tag category-education">Educación</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Universidades públicas implementan programas de capacitación en IA</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Programas que incluyen:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Diplomados en IA y Machine Learning</li>
+                                            <li>Talleres prácticos de programación</li>
+                                            <li>Certificaciones en tecnologías emergentes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Desarrollo de diplomados y talleres especializados</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Contenido especializado que incluye:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Fundamentos de IA</li>
+                                            <li>Aplicaciones prácticas</li>
+                                            <li>Casos de estudio reales</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q4 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot has-tooltip">
+                        <div class="tooltip">Innovación en Seguridad</div>
+                    </div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <div class="text-sm text-blue-600 font-semibold mb-2">Q4 2024</div>
+                                <h3 class="text-xl font-bold text-gray-900">Innovación en Seguridad</h3>
+                            </div>
+                            <span class="category-tag category-security">Seguridad</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Implementación de sistemas de videovigilancia con IA</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Sistemas avanzados que incluyen:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Detección de comportamientos sospechosos</li>
+                                            <li>Reconocimiento facial en tiempo real</li>
+                                            <li>Análisis de patrones de movimiento</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Proyectos piloto en gestión documental con IA</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Sistemas de gestión que incluyen:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Clasificación automática de documentos</li>
+                                            <li>Extracción de información relevante</li>
+                                            <li>Búsqueda inteligente</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot has-tooltip">
+                        <div class="tooltip">Consolidación y Futuro</div>
+                    </div>
+                    <div class="timeline-content bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <div class="text-sm text-blue-600 font-semibold mb-2">2025</div>
+                                <h3 class="text-xl font-bold text-gray-900">Consolidación y Futuro</h3>
+                            </div>
+                            <span class="category-tag category-innovation">Innovación</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Expansión de proyectos de IA en transporte y agricultura</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Proyectos que incluyen:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Optimización de rutas de transporte</li>
+                                            <li>Monitoreo de cultivos con drones</li>
+                                            <li>Predicción de cosechas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Desarrollo de ciudades inteligentes</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Iniciativas que incluyen:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Gestión inteligente de residuos</li>
+                                            <li>Optimización de energía</li>
+                                            <li>Monitoreo ambiental</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <div>
+                                    <span class="font-medium">Implementación de IA en gestión ambiental</span>
+                                    <button class="expand-button ml-2" onclick="toggleDetails(this)">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="details-content">
+                                        <p class="mt-2 text-sm text-gray-500">Sistemas que incluyen:</p>
+                                        <ul class="list-disc ml-6 mt-2 text-sm text-gray-500">
+                                            <li>Monitoreo de calidad del aire</li>
+                                            <li>Predicción de desastres naturales</li>
+                                            <li>Conservación de recursos naturales</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animación de elementos al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.timeline-item').forEach((item) => {
+            observer.observe(item);
+        });
+
+        // Función para expandir/colapsar detalles
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            details.classList.toggle('expanded');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+
+        // Filtrado por categorías
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                const category = tag.classList[1].split('-')[1];
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    const itemCategory = item.querySelector('.category-tag').classList[1].split('-')[1];
+                    if (category === 'all' || category === itemCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

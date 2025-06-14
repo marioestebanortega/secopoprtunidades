@@ -1,0 +1,75 @@
+Línea de Tiempo Detallada de Eventos de Contratación Pública en IA en Colombia (2021-2025)
+Esta línea de tiempo se basa en el análisis de contratos históricos (2021-2025) y procesos de contratación abiertos y recientemente adjudicados.
+
+Período General: 2021-2025
+
+Expansión del Mercado de IA en el Sector Público Colombiano: El análisis general indica un mercado de IA en pleno crecimiento, con entidades públicas invirtiendo en IA para modernizar servicios, optimizar procesos, mejorar la seguridad y generar valor a partir de sus datos.
+Eventos Significativos de Contratación (Históricos y Recientes):
+
+Periodo 2021-2025 (Contratos Históricos de Alto Valor):
+Fondo Único de TIC (MinTIC) se consolida como el mayor comprador de IA: Contrataciones que superan los $200 mil millones de pesos para proyectos de gran envergadura, incluyendo Centros de IA y plataformas de datos.
+Se identifican proyectos de más de $234 mil millones y $4.8 mil millones.
+ICBF realiza inversiones significativas en plataformas de Big Data, Machine Learning e IA: Contratos por más de $1.3 mil millones de pesos para la toma de decisiones.
+Ejemplo específico: Contrato CO1.PCCNTR.2889501 (Plataformas de Datos y Analítica Avanzada).
+ANDJE invierte en soluciones de software con IA para gestión de litigios: Contratos que superan los $2.5 mil millones de pesos.
+Se identifican proyectos de $4.8 mil millones y $2.5 mil millones.
+SENA realiza contrataciones masivas: Principalmente instructores y expertos para formación en IA, y proyectos de investigación aplicada.
+Minciencias financia proyectos de investigación y desarrollo con IA: Especialmente en salud y tecnología.
+Gobernación del Cauca es muy activa en contratos de IA: Para fortalecer su sistema de información socioeconómico (Tángara), análisis de datos y proyectos ODS.
+Se observan múltiples contratos de servicios profesionales y consultoría.
+Gobernación del Valle del Cauca invierte en automatización y participación ciudadana: A través de motores de inteligencia de negocios e IA, con contratos por $460 millones de pesos.
+UNP adquiere soluciones de ciberseguridad con IA: Contratos que varían entre $130 millones y más de $680 millones.
+Ejemplo específico: Contrato CO1.PCCNTR.3743702.
+También se menciona un proyecto de $686 millones.
+Comisión de Regulación de Agua Potable y Saneamiento Básico (CRA) adquiere soluciones de ciberseguridad con IA: Ejemplo específico: Contrato CO1.PCCNTR.2999732.
+UNIVERSIDAD EAFIT con el MEN realiza un contrato significativo de Educación y Fortalecimiento de Capacidades: Por $2.9 mil millones de pesos. Ejemplo específico: CO1.PCCNTR.6649510.
+ICFES realiza proyectos de gran escala: Con un valor de $2.8 mil millones.
+E.S.E Hospital Universitario de Santander contrata Automatización y Optimización de Procesos: Ejemplo específico: CO1.PCCNTR.6020821.
+Municipio de Villapinzón contrata Automatización y Optimización de Procesos: Ejemplo específico: CO1.PCCNTR.6847567.
+Eventos de Monitoreo Temprano (Fase de Solicitud de Información/Estudio de Mercado - Sin Precio Base o Precio Base Cero):
+CO1.REQ.6174606: MinTIC explora la adquisición de una Herramienta de Ciberseguridad.
+CO1.REQ.8238557: FAC explora el desarrollo de Realidad Virtual.
+Procesos de Contratación Abiertos (Fase de "Presentación de Oferta" o "Presentación de Observaciones" - Inmediato):
+CO1.REQ.7886187 (EMCALI E.I.C.E. E.S.P.): Fortalecimiento de capacidades comerciales y relacionamiento con el cliente mediante un prototipo de ecosistema digital con IA. Valor: $2,500,000,000 COP.
+CO1.REQ.8108643 (INSTITUTO AMAZÓNICO DE INVESTIGACIONES CIENTÍFICAS SINCHI): Servicios profesionales en ciencia de datos geoespaciales para modelos de IA para monitoreo forestal. Valor: $70,000,000 COP.
+CO1.REQ.8028071 (CORPORACIÓN COLOMBIA CREA TALENTO): Desarrollo técnico y experiencia con IA para un evento de posicionamiento de Bogotá como hub de tecnología e innovación. Valor: $25,212,813 COP.
+CO1.REQ.7890353 (UNIVERSIDAD DE LOS LLANOS): Adquisición de equipos para clasificación de carcinomas caninos usando IA (Redes Neuronales). Valor: $17,666,740 COP.
+Procesos Recientemente Adjudicados (Indicadores de Mercado y Posibles Alianzas):
+CO1.REQ.6813229 (CONCEJO MUNICIPAL DE MEDELLÍN): Suministro de plataforma de servicios jurídicos avanzados con asistente de IA para la defensa litigiosa. Adjudicado a TIRANT LO BLANCH. Valor: $5,000,000 COP.
+CO1.REQ.6912677 (GOBERNACIÓN DEL CAUCA): Servicios profesionales para extracción, transformación y cargue de información estadística en el marco del proyecto Tángara (IA). Adjudicado a EDIMER GONZALEZ CIFUENTES. Valor: $8,400,000 COP.
+CO1.REQ.6695249 (FINANCIERA DE DESARROLLO NACIONAL S.A.): Suscripción anual para 10 licencias de IA en plataforma jurídica vLex. Adjudicado a COLOMBIA INFORMACIÓN LEGAL SAS. Valor: $22,808,016 COP.
+CO1.REQ.7711091 (SENA SECRETARÍA GENERAL): Construir parámetros comportamentales para el entrenamiento de una entrevista con Inteligencia Artificial. Adjudicado a SUSANA GARCIA CASALLAS. Valor: $22,769,368 COP.
+Elenco de Personajes (Principales Entidades y Personas Mencionadas)
+Este listado incluye las principales entidades y, cuando se especifican, las personas o empresas que actúan como proveedores en el contexto de la contratación de IA.
+
+Entidades Contratantes (Compradores de IA):
+
+Fondo Único de TIC (MinTIC): Entidad del orden nacional, el "jugador más importante" en la contratación de IA en Colombia. Lidera proyectos de gran envergadura para implementar Centros de IA y plataformas de datos, con contrataciones que superan los $200 mil millones de pesos.
+ICBF (Instituto Colombiano de Bienestar Familiar): Entidad del orden nacional que invierte significativamente en plataformas de Big Data, Machine Learning e IA para la toma de decisiones, con contratos de más de $1.3 mil millones de pesos.
+SENA: Servicio Nacional de Aprendizaje. Entidad del orden nacional que contrata masivamente instructores y expertos para formación en IA, así como proyectos de investigación aplicada.
+Agencia Nacional de Defensa Jurídica del Estado (ANDJE): Entidad del orden nacional que invierte en soluciones de software con IA para la gestión de litigios, con contratos que superan los $2.5 mil millones de pesos.
+Minciencias: Ministerio de Ciencia, Tecnología e Innovación. Entidad del orden nacional que financia proyectos de investigación y desarrollo que involucran IA, especialmente en áreas como la salud y la tecnología.
+Gobernación del Cauca: Entidad del orden territorial, muy activa en la contratación de IA. Ha realizado múltiples contratos para fortalecer su sistema de información socioeconómico (Tángara) con IA, análisis de datos y proyectos ODS.
+Gobernación del Valle del Cauca: Entidad del orden territorial que invierte en la automatización de procesos y participación ciudadana a través de motores de inteligencia de negocios e IA, con contratos por $460 millones de pesos.
+Alcaldías (Zipaquirá, Pereira, etc.): Entidades del orden territorial que muestran un interés creciente en la implementación de IA para modernizar la atención al ciudadano y la gestión de la movilidad.
+UNP (Unidad Nacional de Protección): Entidad que ha contratado soluciones de ciberseguridad que utilizan IA.
+Comisión de Regulación de Agua Potable y Saneamiento Básico (CRA): Entidad que ha contratado soluciones de ciberseguridad que utilizan IA.
+UNIVERSIDAD EAFIT: Entidad educativa que ha obtenido contratos significativos relacionados con educación y fortalecimiento de capacidades en IA, en colaboración con el MEN.
+MEN (Ministerio de Educación Nacional): Entidad del orden nacional involucrada en proyectos de educación y fortalecimiento de capacidades en IA con entidades como EAFIT.
+DNP (Departamento Nacional de Planeación): Entidad del orden nacional mencionada en el contexto de consultoría estratégica y diseño de hojas de ruta en IA.
+JEP (Jurisdicción Especial para la Paz): Entidad del orden nacional mencionada en el contexto de proyectos de pequeña escala, posiblemente de servicios profesionales o adquisición de licencias de software con IA.
+E.S.E Hospital Universitario de Santander: Entidad de salud que ha contratado automatización y optimización de procesos con IA.
+Municipio de Villapinzón: Entidad territorial que ha contratado automatización y optimización de procesos con IA.
+FINANCIERA DE DESARROLLO NACIONAL S.A.: Entidad que ha contratado la suscripción anual de licencias de IA en plataformas jurídicas.
+EMCALI E.I.C.E. E.S.P.: Empresa de servicios públicos que busca fortalecer sus capacidades comerciales y de relacionamiento con el cliente mediante un prototipo de ecosistema digital con IA.
+INSTITUTO AMAZÓNICO DE INVESTIGACIONES CIENTÍFICAS SINCHI: Instituto de investigación que busca servicios profesionales en ciencia de datos geoespaciales para modelos de IA de monitoreo forestal.
+CORPORACIÓN COLOMBIA CREA TALENTO: Corporación que busca desarrollo técnico y experiencia con IA para un evento de posicionamiento de Bogotá como hub de tecnología e innovación.
+UNIVERSIDAD DE LOS LLANOS: Entidad educativa que busca adquirir equipos para un proyecto de clasificación de carcinomas caninos usando IA.
+CONCEJO MUNICIPAL DE MEDELLÍN: Entidad que ha contratado una plataforma de servicios jurídicos avanzados con asistente de IA.
+Proveedores / Adjudicatarios (Expertos y Empresas de IA):
+
+TIRANT LO BLANCH: Proveedor adjudicado para el suministro de una plataforma de servicios jurídicos avanzados con asistente de IA para el Concejo Municipal de Medellín.
+EDIMER GONZALEZ CIFUENTES: Proveedor adjudicado para servicios profesionales de extracción, transformación y cargue de información estadística para el proyecto Tángara de la Gobernación del Cauca.
+COLOMBIA INFORMACIÓN LEGAL SAS: Proveedor adjudicado para la suscripción anual de licencias de IA en la plataforma jurídica vLex para la Financiera de Desarrollo Nacional S.A.
+SUSANA GARCIA CASALLAS: Proveedor adjudicado para construir parámetros comportamentales para el entrenamiento de una entrevista con Inteligencia Artificial para el SENA Secretaría General.
+FINDETER: Entidad financiera que participa en convenios interadministrativos, especialmente relevantes para proyectos estratégicos de gran escala, como los del Fondo Único de TIC o la ANDJE. (Mencionado como actor en la adjudicación de contratos grandes).
