@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company IA - Soluciones de Inteligencia Artificial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #5b86e5, #36d1dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+            opacity: 1;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #00d4ff, #36d1dc);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(54, 209, 220, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            color: #b3c5d1;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #8b98a5;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #00d4ff, #36d1dc);
+            color: #0f0f23;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: #ffffff;
+            padding: 16px 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #8b98a5;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.6));
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .product-card:hover::before {
+            background: linear-gradient(90deg, transparent, #36d1dc, #00d4ff, #36d1dc, transparent);
+        }
+
+        .product-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00d4ff, #36d1dc);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .product-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .product-card .product-tagline {
+            color: #00d4ff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-card p {
+            color: #b3c5d1;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .product-features li {
+            padding: 0.5rem 0;
+            color: #8b98a5;
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+        }
+
+        .product-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .price-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price-range {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(54, 209, 220, 0.2));
+            color: #00d4ff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .learn-more {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .learn-more:hover {
+            color: #00d4ff;
+        }
+
+        /* Market Insights Section */
+        .market-insights {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .insight-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .insight-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .insight-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00d4ff, #36d1dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .insight-item p {
+            color: #b3c5d1;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #16213e 0%, #0f0f23 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(54, 209, 220, 0.2));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(54, 209, 220, 0.3));
+            transform: scale(1.1);
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .feature-item p {
+            color: #8b98a5;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a1a;
+            color: white;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff, #36d1dc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 0.5rem 0;
+        }
+
+        .footer-section ul li a {
+            color: #8b98a5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #8b98a5;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .insights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f0f23;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00d4ff, #36d1dc);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Company IA</div>
+            <ul class="nav-links">
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#insights">Market Intelligence</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Inteligencia Artificial que Transforma Negocios</h1>
+                <p class="hero-subtitle">Soluciones empresariales de IA diseñadas para el futuro</p>
+                <p class="hero-description">Desarrollamos agentes inteligentes y soluciones de automatización que impulsan la productividad, optimizan procesos y generan valor real para organizaciones de todos los tamaños.</p>
+                <div class="cta-buttons">
+                    <a href="#productos" class="cta-primary">Explorar Productos</a>
+                    <a href="#contacto" class="cta-secondary">Solicitar Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestro Portafolio de Productos</h2>
+            <p class="section-subtitle">Soluciones de IA especializadas en agentes inteligentes y automatización empresarial</p>
+
+            <div class="products-grid">
+                <!-- Producto 1: Agentes de Servicio al Cliente -->
+                <div class="product-card">
+                    <div class="product-icon">💬</div>
+                    <div class="product-tagline">Customer Service AI</div>
+                    <h3>AgentSupport Pro</h3>
+                    <p>Agentes inteligentes conversacionales que revolucionan el servicio al cliente con comprensión natural del lenguaje y resolución automática de consultas complejas.</p>
+                    <ul class="product-features">
+                        <li>Chatbots multicanal con NLP avanzado</li>
+                        <li>Integración con CRM y bases de datos</li>
+                        <li>Escalamiento inteligente a agentes humanos</li>
+                        <li>Análisis de sentimientos en tiempo real</li>
+                        <li>Disponibilidad 24/7 multiidioma</li>
+                    </ul>
+                    <div class="price-info">
+                        <span class="price-range">AI Agents</span>
+                        <a href="#contacto" class="learn-more">Solicitar Demo →</a>
+                    </div>
+                </div>
+
+                <!-- Producto 2: Agentes de Información Empresarial -->
+                <div class="product-card">
+                    <div class="product-icon">🔍</div>
+                    <div class="product-tagline">Knowledge Intelligence</div>
+                    <h3>InfoAgent Enterprise</h3>
+                    <p>Agentes especializados en el aprovechamiento de información corporativa mediante técnicas avanzadas de búsqueda semántica y comprensión contextual.</p>
+                    <ul class="product-features">
+                        <li>Búsqueda semántica en documentos empresariales</li>
+                        <li>Análisis de información no estructurada</li>
+                        <li>Generación automática de insights</li>
+                        <li>Integración con sistemas documentales</li>
+                        <li>Respuestas contextuales inteligentes</li>
+                    </ul>
+                    <div class="price-info">
+                        <span class="price-range">Enterprise Solution</span>
+                        <a href="#contacto" class="learn-more">Explorar →</a>
+                    </div>
+                </div>
+
+                <!-- Producto 3: Workflows Documentales -->
+                <div class="product-card">
+                    <div class="product-icon">📄</div>
+                    <div class="product-tagline">Document Automation</div>
+                    <h3>DocFlow AI</h3>
+                    <p>Sistema inteligente de workflows automatizados para recepción, análisis y procesamiento de documentos empresariales con comprensión de contenido.</p>
+                    <ul class="product-features">
+                        <li>OCR avanzado con IA</li>
+                        <li>Clasificación automática de documentos</li>
+                        <li>Extracción inteligente de datos</li>
+                        <li>Workflows adaptativos por tipo de documento</li>
+                        <li>Validación y aprobaciones automatizadas</li>
+                    </ul>
+                    <div class="price-info">
+                        <span class="price-range">Process Automation</span>
+                        <a href="#contacto" class="learn-more">Ver Demo →</a>
+                    </div>
+                </div>
+
+                <!-- Producto 4: Asistente de Productividad -->
+                <div class="product-card">
+                    <div class="product-icon">⚡</div>
+                    <div class="product-tagline">Productivity Assistant</div>
+                    <h3>ProductivIA Plus</h3>
+                    <p>Asistente inteligente personal que potencia la productividad individual y de equipos mediante automatización de tareas y optimización del tiempo.</p>
+                    <ul class="product-features">
+                        <li>Gestión inteligente de calendario y tareas</li>
+                        <li>Automatización de emails y comunicaciones</li>
+                        <li>Análisis de patrones de productividad</li>
+                        <li>Generación automática de reportes</li>
+                        <li>Integración con herramientas de trabajo</li>
+                    </ul>
+                    <div class="price-info">
+                        <span class="price-range">Personal AI</span>
+                        <a href="#contacto" class="learn-more">Probar Gratis →</a>
+                    </div>
+                </div>
+
+                <!-- Producto 5: Consultoría Especializada -->
+                <div class="product-card">
+                    <div class="product-icon">🎯</div>
+                    <div class="product-tagline">AI Strategy</div>
+                    <h3>AI Implementation Consulting</h3>
+                    <p>Servicios de consultoría especializada para la implementación estratégica de agentes de IA y automatización en procesos empresariales críticos.</p>
+                    <ul class="product-features">
+                        <li>Evaluación de procesos para automatización</li>
+                        <li>Diseño de arquitecturas de agentes IA</li>
+                        <li>Capacitación especializada de equipos</li>
+                        <li>Gestión de proyectos de transformación</li>
+                        <li>Métricas de ROI y optimización continua</li>
+                    </ul>
+                    <div class="price-info">
+                        <span class="price-range">Consulting</span>
+                        <a href="#contacto" class="learn-more">Consultar →</a>
+                    </div>
+                </div>
+
+                <!-- Producto 6: Plataforma de Entrenamiento -->
+                <div class="product-card">
+                    <div class="product-icon">🎓</div>
+                    <div class="product-tagline">AI Training</div>
+                    <h3>AI Skills Academy</h3>
+                    <p>Plataforma educativa especializada en el desarrollo de competencias para trabajar con agentes de IA y herramientas de automatización inteligente.</p>
+                    <ul class="product-features">
+                        <li>Cursos prácticos sobre agentes de IA</li>
+                        <li>Simuladores de automatización empresarial</li>
+                        <li>Certificaciones en herramientas de IA</li>
+                        <li>Contenido actualizado con últimas tendencias</li>
+                        <li>Proyectos reales guiados</li>
+                    </ul>
+                    <div class="price-info">
+                        <span class="price-range">Learning Platform</span>
+                        <a href="#contacto" class="learn-more">Comenzar →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="market-insights" id="insights">
+        <div class="container">
+            <h2 class="section-title">Market Intelligence</h2>
+            <p class="section-subtitle">Insights basados en análisis del mercado colombiano de automatización con IA</p>
+            
+            <div class="insights-grid">
+                <div class="insight-item">
+                    <h3>150B+</h3>
+                    <p>Mercado de agentes IA identificado</p>
+                </div>
+                <div class="insight-item">
+                    <h3>90%</h3>
+                    <p>Mejora en productividad empresarial</p>
+                </div>
+                <div class="insight-item">
+                    <h3>5</h3>
+                    <p>Áreas de especialización</p>
+                </div>
+                <div class="insight-item">
+                    <h3>2025</h3>
+                    <p>Año de adopción masiva</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">¿Por Qué Elegir Company IA?</h2>
+            <p class="section-subtitle">Experiencia especializada en agentes inteligentes y automatización empresarial</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h4>Especialización en Agentes IA</h4>
+                    <p>Nos enfocamos exclusivamente en el desarrollo de agentes inteligentes y sistemas de automatización avanzada para empresas.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📈</div>
+                    <h4>Productividad Comprobada</h4>
+                    <p>Nuestros clientes experimentan mejoras del 70-90% en productividad y eficiencia operacional documentada.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <h4>Automatización Inteligente</h4>
+                    <p>Implementamos workflows que aprenden y se adaptan, mejorando continuamente su rendimiento y precisión.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Soluciones Personalizadas</h4>
+                    <p>Cada agente y proceso se diseña específicamente para las necesidades únicas de tu organización.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Implementación Ágil</h4>
+                    <p>Metodologías probadas que permiten implementaciones rápidas con mínima disrupción operacional.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h4>Acompañamiento Continuo</h4>
+                    <p>Soporte permanente y optimización continua de tus agentes IA y procesos automatizados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Company IA</h4>
+                    <p style="color: #8b98a5; line-height: 1.7;">Especializados en agentes inteligentes y automatización empresarial. Transformamos la productividad mediante soluciones de IA personalizadas que impulsan el crecimiento y la eficiencia operacional.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Nuestros Productos</h4>
+                    <ul>
+                        <li><a href="#productos">AgentSupport Pro</a></li>
+                        <li><a href="#productos">InfoAgent Enterprise</a></li>
+                        <li><a href="#productos">DocFlow AI</a></li>
+                        <li><a href="#productos">ProductivIA Plus</a></li>
+                        <li><a href="#productos">AI Implementation Consulting</a></li>
+                        <li><a href="#productos">AI Skills Academy
