@@ -8,12 +8,29 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --blue-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --purple-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F0F9FF;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
         .chart-container {
             position: relative;
             width: 100%;
@@ -23,207 +40,582 @@
             height: 300px;
             max-height: 400px;
         }
+        
         @media (min-width: 768px) {
             .chart-container {
                 height: 400px;
             }
         }
+        
         .kpi-card {
-            background-color: #CAF0F8;
-            border-left: 5px solid #0077B6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .kpi-card:hover::before {
+            left: 100%;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
         .flowchart-step {
             position: relative;
-            padding-left: 2.5rem;
+            padding-left: 4rem;
             padding-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.6s ease forwards;
         }
+        
+        .flowchart-step:nth-child(1) { animation-delay: 0.1s; }
+        .flowchart-step:nth-child(2) { animation-delay: 0.2s; }
+        .flowchart-step:nth-child(3) { animation-delay: 0.3s; }
+        .flowchart-step:nth-child(4) { animation-delay: 0.4s; }
+        .flowchart-step:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
         .flowchart-step:not(:last-child)::before {
             content: '';
             position: absolute;
-            left: 1.125rem;
-            top: 1.5rem;
-            width: 2px;
-            height: calc(100% - 0.5rem);
-            background-color: #48CAE4;
+            left: 1.75rem;
+            top: 3.5rem;
+            width: 3px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 2px;
         }
+        
         .flowchart-icon {
             position: absolute;
             left: 0;
             top: 0;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 9999px;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            font-weight: bold;
+            font-size: 1.5rem;
             color: white;
-            background-color: #0077B6;
-            border: 4px solid #90E0EF;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
+        
+        .flowchart-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+        
         .pyramid-level {
-            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
-            margin-bottom: -1px;
+            clip-path: polygon(15% 0, 85% 0, 95% 100%, 5% 100%);
+            margin-bottom: -2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pyramid-level::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .pyramid-level:hover::before {
+            left: 100%;
+        }
+        
+        .pyramid-level:hover {
+            transform: scale(1.02);
+        }
+        
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .table-row {
+            transition: all 0.3s ease;
+        }
+        
+        .table-row:hover {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transform: scale(1.01);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .icon-3d {
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            transition: all 0.3s ease;
+        }
+        
+        .icon-3d:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
         }
     </style>
 </head>
 <body class="text-gray-800">
-
-    <div class="container mx-auto px-4 py-12">
-        <header class="text-center mb-16 relative">
-            <a href="index.html" class="absolute left-0 top-0 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
-                <i class="fas fa-arrow-left mr-2"></i>
-                Volver al Inicio
-            </a>
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">Infografía: IA en Contratación Pública</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Visualización detallada de las oportunidades de Inteligencia Artificial en el sector público colombiano</p>
+    <div class="min-h-screen">
+        <!-- Hero Section -->
+        <header class="hero-gradient text-white py-20 relative">
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <div class="animate-float">
+                    <i class="fas fa-brain text-6xl mb-6 icon-3d"></i>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                    IA en Contratación
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+                        Pública
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    Descubre las oportunidades millonarias de Inteligencia Artificial en el sector público colombiano
+                </p>
+                <div class="mt-8">
+                    <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+                        <i class="fas fa-chart-line text-yellow-400"></i>
+                        <span class="font-semibold">Análisis Completo del Mercado</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative elements -->
+            <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse-slow"></div>
+            <div class="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full animate-float"></div>
+            <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-yellow-400/20 rounded-full animate-pulse-slow"></div>
         </header>
 
-        <main>
+        <div class="container mx-auto px-4 py-12 space-y-20">
             
-            <section id="compradores" class="mb-16">
-                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">¿Quiénes son los Gigantes de la Contratación?</h2>
-                    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">La inversión en IA está liderada por un grupo selecto de entidades nacionales que concentran la mayor parte del presupuesto. Identificar a estos actores clave es el primer paso para una estrategia comercial exitosa.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
-                        <div class="kpi-card p-4 rounded-lg">
-                            <h3 class="text-4xl font-black text-[#004AAD]">> $200 Mil M</h3>
-                            <p class="font-semibold text-[#0077B6]">Fondo Único de TIC</p>
+            <!-- Compradores Section -->
+            <section id="compradores" class="relative">
+                <div class="section-card rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
+                            <i class="fas fa-building text-2xl text-white"></i>
                         </div>
-                        <div class="kpi-card p-4 rounded-lg">
-                            <h3 class="text-4xl font-black text-[#004AAD]">> $2.5 Mil M</h3>
-                            <p class="font-semibold text-[#0077B6]">Agencia de Defensa Jurídica</p>
+                        <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">
+                            Los Gigantes de la Contratación
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            La inversión en IA está liderada por un grupo selecto de entidades nacionales que concentran la mayor parte del presupuesto. Identificar a estos actores clave es el primer paso para una estrategia comercial exitosa.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                        <div class="kpi-card p-8 rounded-2xl text-white text-center relative overflow-hidden">
+                            <div class="relative z-10">
+                                <i class="fas fa-trophy text-4xl mb-4 text-yellow-300"></i>
+                                <h3 class="text-4xl md:text-5xl font-black mb-2">+$200 Mil M</h3>
+                                <p class="font-semibold text-lg">Fondo Único de TIC</p>
+                                <p class="text-sm opacity-90 mt-2">Líder absoluto del mercado</p>
+                            </div>
                         </div>
-                        <div class="kpi-card p-4 rounded-lg">
-                            <h3 class="text-4xl font-black text-[#004AAD]">> $1.3 Mil M</h3>
-                            <p class="font-semibold text-[#0077B6]">ICBF</p>
+                        <div class="kpi-card p-8 rounded-2xl text-white text-center relative overflow-hidden">
+                            <div class="relative z-10">
+                                <i class="fas fa-shield-alt text-4xl mb-4 text-green-300"></i>
+                                <h3 class="text-4xl md:text-5xl font-black mb-2">+$2.5 Mil M</h3>
+                                <p class="font-semibold text-lg">Agencia de Defensa Jurídica</p>
+                                <p class="text-sm opacity-90 mt-2">Segundo mayor inversor</p>
+                            </div>
+                        </div>
+                        <div class="kpi-card p-8 rounded-2xl text-white text-center relative overflow-hidden">
+                            <div class="relative z-10">
+                                <i class="fas fa-heart text-4xl mb-4 text-pink-300"></i>
+                                <h3 class="text-4xl md:text-5xl font-black mb-2">+$1.3 Mil M</h3>
+                                <p class="font-semibold text-lg">ICBF</p>
+                                <p class="text-sm opacity-90 mt-2">Enfoque en bienestar social</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="chart-container h-[500px] md:h-[400px]">
-                        <canvas id="compradoresChart"></canvas>
+                    
+                    <div class="bg-white rounded-2xl p-6 shadow-inner">
+                        <div class="chart-container h-[500px] md:h-[400px]">
+                            <canvas id="compradoresChart"></canvas>
+                        </div>
                     </div>
-                    <p class="text-center text-gray-500 mt-4 italic">El gráfico muestra la magnitud de la inversión de las principales entidades, destacando al Fondo Único de TIC como el principal motor del mercado.</p>
+                    
+                    <div class="mt-8 text-center">
+                        <div class="inline-flex items-center space-x-2 bg-blue-50 rounded-full px-6 py-3">
+                            <i class="fas fa-info-circle text-blue-500"></i>
+                            <p class="text-gray-600 italic">
+                                El Fondo Único de TIC domina el mercado con una inversión 80 veces mayor que el promedio
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </section>
             
-            <section id="proyectos" class="mb-16">
-                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">El Panorama de los Proyectos de IA</h2>
-                    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Las oportunidades son diversas, abarcando desde el desarrollo de complejas plataformas de datos hasta consultorías especializadas. Comprender el valor potencial de cada tipo de proyecto es fundamental.</p>
-                    <div class="chart-container h-96">
-                        <canvas id="proyectosChart"></canvas>
+            <!-- Proyectos Section -->
+            <section id="proyectos">
+                <div class="section-card rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full mb-6">
+                            <i class="fas fa-project-diagram text-2xl text-white"></i>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">
+                            El Panorama de los Proyectos
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            Las oportunidades son diversas, abarcando desde el desarrollo de complejas plataformas de datos hasta consultorías especializadas. Comprender el valor potencial de cada tipo de proyecto es fundamental.
+                        </p>
                     </div>
-                    <p class="text-center text-gray-500 mt-8 italic">El gráfico de dona ilustra la distribución de los tipos de proyectos de IA que el sector público está demandando, mostrando un abanico de oportunidades para diferentes especializaciones.</p>
-                </div>
-            </section>
-
-            <section id="estrategia" class="mb-16">
-                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">La Pirámide de Oportunidades</h2>
-                    <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">El mercado se puede segmentar en tres niveles. Cada escala de proyecto requiere un enfoque y una estrategia diferente para maximizar las probabilidades de éxito.</p>
-                    <div class="w-full max-w-2xl mx-auto flex flex-col items-center">
-                        <div class="pyramid-level bg-[#0077B6] text-white w-full md:w-3/4 p-4 text-center">
-                            <h3 class="font-bold text-xl mb-1">Proyectos Estratégicos</h3>
-                            <p class="font-bold text-2xl mb-2">> $1.000 Millones</p>
-                            <p class="text-sm">Requieren alianzas (Uniones Temporales) y una robusta capacidad técnica y financiera.</p>
+                    
+                    <div class="bg-white rounded-2xl p-6 shadow-inner">
+                        <div class="chart-container h-96">
+                            <canvas id="proyectosChart"></canvas>
                         </div>
-                        <div class="pyramid-level bg-[#48CAE4] text-white w-full md:w-5/6 p-4 text-center">
-                            <h3 class="font-bold text-xl mb-1">Proyectos de Mediana Escala</h3>
-                            <p class="font-bold text-2xl mb-2">$100M - $900M</p>
-                            <p class="text-sm">El "punto dulce". Exige alta especialización para acceder a contratación directa.</p>
-                        </div>
-                        <div class="pyramid-level bg-[#90E0EF] text-[#004AAD] w-full p-4 text-center">
-                            <h3 class="font-bold text-xl mb-1">Proyectos de Pequeña Escala</h3>
-                            <p class="font-bold text-2xl mb-2">< $100M</p>
-                            <p class="text-sm">Ideal para construir historial. Foco en servicios profesionales y consultoría.</p>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <div class="inline-flex items-center space-x-2 bg-green-50 rounded-full px-6 py-3">
+                            <i class="fas fa-lightbulb text-green-500"></i>
+                            <p class="text-gray-600 italic">
+                                Las plataformas de datos representan el 50% del valor total del mercado
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="hoja-de-ruta" class="mb-16">
-                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">Hoja de Ruta para Ganar Licitaciones</h2>
-                    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Tener éxito en la contratación pública requiere más que capacidad técnica. Implica un enfoque estratégico, agilidad y un profundo conocimiento del ecosistema de contratación estatal.</p>
-                    <div class="max-w-2xl mx-auto">
-                        <div class="flowchart-step">
-                            <div class="flowchart-icon">🎯</div>
-                            <h3 class="text-xl font-bold text-[#0077B6]">1. Enfoque Estratégico</h3>
-                            <p class="text-gray-600">Concentre los esfuerzos comerciales en las entidades de alto gasto ya identificadas: MinTIC, ICBF, SENA y ANDJE.</p>
+            <!-- Estrategia Section -->
+            <section id="estrategia">
+                <div class="section-card rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full mb-6">
+                            <i class="fas fa-chess-king text-2xl text-white"></i>
                         </div>
-                        <div class="flowchart-step">
-                            <div class="flowchart-icon">📦</div>
-                            <h3 class="text-xl font-bold text-[#0077B6]">2. Portafolio Diversificado</h3>
-                            <p class="text-gray-600">Ofrezca un abanico de servicios, desde consultoría hasta desarrollo a medida y soluciones verticales para Justicia, Salud o Educación.</p>
-                        </div>
-                        <div class="flowchart-step">
-                            <div class="flowchart-icon">🔍</div>
-                            <h3 class="text-xl font-bold text-[#0077B6]">3. Participación Temprana</h3>
-                            <p class="text-gray-600">Monitoree procesos en fase de "Solicitud de Información". Participar en estas etapas permite influir en los requisitos técnicos.</p>
-                        </div>
-                        <div class="flowchart-step">
-                             <div class="flowchart-icon">🤝</div>
-                            <h3 class="text-xl font-bold text-[#0077B6]">4. Flexibilidad en el Modelo</h3>
-                            <p class="text-gray-600">Esté abierto a crear Uniones Temporales para grandes proyectos y tenga un roster de expertos listos para contratación directa.</p>
-                        </div>
-                         <div class="flowchart-step">
-                            <div class="flowchart-icon">⚡️</div>
-                            <h3 class="text-xl font-bold text-[#0077B6]">5. Agilidad y Atención</h3>
-                            <p class="text-gray-600">Actúe con rapidez sobre las oportunidades abiertas, prestando máxima atención a los cronogramas definidos.</p>
+                        <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">
+                            La Pirámide de Oportunidades
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            El mercado se puede segmentar en tres niveles estratégicos. Cada escala de proyecto requiere un enfoque y una estrategia diferente para maximizar las probabilidades de éxito.
+                        </p>
+                    </div>
+                    
+                    <div class="w-full max-w-4xl mx-auto">
+                        <div class="space-y-1">
+                            <div class="pyramid-level bg-gradient-to-r from-red-500 to-pink-600 text-white w-full md:w-3/4 mx-auto p-8 text-center rounded-t-2xl">
+                                <div class="flex items-center justify-center mb-4">
+                                    <i class="fas fa-crown text-3xl mr-3"></i>
+                                    <h3 class="font-black text-2xl">Proyectos Estratégicos</h3>
+                                </div>
+                                <p class="font-bold text-3xl mb-4">+$1.000 Millones</p>
+                                <p class="text-lg opacity-90">Requieren alianzas (Uniones Temporales) y una robusta capacidad técnica y financiera</p>
+                            </div>
+                            <div class="pyramid-level bg-gradient-to-r from-blue-500 to-purple-600 text-white w-full md:w-5/6 mx-auto p-8 text-center">
+                                <div class="flex items-center justify-center mb-4">
+                                    <i class="fas fa-target text-3xl mr-3"></i>
+                                    <h3 class="font-black text-2xl">Proyectos de Mediana Escala</h3>
+                                </div>
+                                <p class="font-bold text-3xl mb-4">$100M - $900M</p>
+                                <p class="text-lg opacity-90">El "punto dulce". Exige alta especialización para acceder a contratación directa</p>
+                            </div>
+                            <div class="pyramid-level bg-gradient-to-r from-green-400 to-blue-500 text-white w-full mx-auto p-8 text-center rounded-b-2xl">
+                                <div class="flex items-center justify-center mb-4">
+                                    <i class="fas fa-seedling text-3xl mr-3"></i>
+                                    <h3 class="font-black text-2xl">Proyectos de Pequeña Escala</h3>
+                                </div>
+                                <p class="font-bold text-3xl mb-4">&lt; $100M</p>
+                                <p class="text-lg opacity-90">Ideal para construir historial. Foco en servicios profesionales y consultoría</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="oportunidades-abiertas" class="mb-16">
-                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">Oportunidades Abiertas (Acción Inmediata)</h2>
-                    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">A continuación, se presentan procesos de contratación concretos que se encuentran abiertos y requieren acción. Representan la oportunidad de empezar a competir ahora.</p>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white border-2 border-[#90E0EF]">
-                            <thead class="bg-[#48CAE4] text-white">
-                                <tr>
-                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Entidad</th>
-                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Descripción</th>
-                                    <th class="text-right py-3 px-4 uppercase font-semibold text-sm">Valor (COP)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-700">
-                                <tr class="border-b border-[#90E0EF] hover:bg-[#CAF0F8]">
-                                    <td class="text-left py-3 px-4 font-semibold">EMCALI</td>
-                                    <td class="text-left py-3 px-4">Fortalecer capacidades comerciales con prototipo de ecosistema digital con IA.</td>
-                                    <td class="text-right py-3 px-4 font-bold text-[#004AAD]">$2,500,000,000</td>
-                                </tr>
-                                <tr class="border-b border-[#90E0EF] hover:bg-[#CAF0F8]">
-                                    <td class="text-left py-3 px-4 font-semibold">INSTITUTO SINCHI</td>
-                                    <td class="text-left py-3 px-4">Servicios profesionales en ciencia de datos geoespaciales para modelos de IA.</td>
-                                    <td class="text-right py-3 px-4 font-bold text-[#004AAD]">$70,000,000</td>
-                                </tr>
-                                <tr class="border-b border-[#90E0EF] hover:bg-[#CAF0F8]">
-                                    <td class="text-left py-3 px-4 font-semibold">COLOMBIA CREA TALENTO</td>
-                                    <td class="text-left py-3 px-4">Desarrollo técnico con IA para evento de posicionamiento de Bogotá como hub tecnológico.</td>
-                                    <td class="text-right py-3 px-4 font-bold text-[#004AAD]">$25,212,813</td>
-                                </tr>
-                                <tr class="hover:bg-[#CAF0F8]">
-                                    <td class="text-left py-3 px-4 font-semibold">UNIVERSIDAD DE LOS LLANOS</td>
-                                    <td class="text-left py-3 px-4">Adquisición de equipos para clasificación de carcinomas caninos usando Redes Neuronales.</td>
-                                    <td class="text-right py-3 px-4 font-bold text-[#004AAD]">$17,666,740</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <!-- Hoja de Ruta Section -->
+            <section id="hoja-de-ruta">
+                <div class="section-card rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-full mb-6">
+                            <i class="fas fa-route text-2xl text-white"></i>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">
+                            Hoja de Ruta para el Éxito
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            Tener éxito en la contratación pública requiere más que capacidad técnica. Implica un enfoque estratégico, agilidad y un profundo conocimiento del ecosistema de contratación estatal.
+                        </p>
+                    </div>
+                    
+                    <div class="max-w-4xl mx-auto">
+                        <div class="flowchart-step">
+                            <div class="flowchart-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">1. Enfoque Estratégico</h3>
+                                <p class="text-gray-600 text-lg leading-relaxed">
+                                    Concentre los esfuerzos comerciales en las entidades de alto gasto ya identificadas: MinTIC, ICBF, SENA y ANDJE.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flowchart-step">
+                            <div class="flowchart-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">2. Portafolio Diversificado</h3>
+                                <p class="text-gray-600 text-lg leading-relaxed">
+                                    Ofrezca un abanico de servicios, desde consultoría hasta desarrollo a medida y soluciones verticales para Justicia, Salud o Educación.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flowchart-step">
+                            <div class="flowchart-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-purple-500">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">3. Participación Temprana</h3>
+                                <p class="text-gray-600 text-lg leading-relaxed">
+                                    Monitoree procesos en fase de "Solicitud de Información". Participar en estas etapas permite influir en los requisitos técnicos.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flowchart-step">
+                            <div class="flowchart-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-orange-500">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">4. Flexibilidad en el Modelo</h3>
+                                <p class="text-gray-600 text-lg leading-relaxed">
+                                    Esté abierto a crear Uniones Temporales para grandes proyectos y tenga un roster de expertos listos para contratación directa.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flowchart-step">
+                            <div class="flowchart-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-500">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-3">5. Agilidad y Atención</h3>
+                                <p class="text-gray-600 text-lg leading-relaxed">
+                                    Actúe con rapidez sobre las oportunidades abiertas, prestando máxima atención a los cronogramas definidos.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-        </main>
 
-        <footer class="text-center pt-8 pb-4">
-            <p class="text-gray-500">Infografía generada a partir del "Análisis del Mercado de Contratación Pública en Inteligencia Artificial".</p>
+            <!-- Oportunidades Abiertas Section -->
+            <section id="oportunidades-abiertas">
+                <div class="section-card rounded-3xl p-8 md:p-12">
+                    <div class="text-center mb-12">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full mb-6 animate-pulse-slow">
+                            <i class="fas fa-rocket text-2xl text-white"></i>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black gradient-text mb-6">
+                            Oportunidades Abiertas
+                        </h2>
+                        <div class="inline-flex items-center space-x-2 bg-red-100 text-red-800 rounded-full px-6 py-3 mb-6">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span class="font-bold">ACCIÓN INMEDIATA REQUERIDA</span>
+                        </div>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            Procesos de contratación concretos que se encuentran abiertos y requieren acción. Representan la oportunidad de empezar a competir ahora mismo.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-inner">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                                    <tr>
+                                        <th class="text-left py-6 px-6 uppercase font-bold text-sm tracking-wider">
+                                            <i class="fas fa-building mr-2"></i>Entidad
+                                        </th>
+                                        <th class="text-left py-6 px-6 uppercase font-bold text-sm tracking-wider">
+                                            <i class="fas fa-file-alt mr-2"></i>Descripción
+                                        </th>
+                                        <th class="text-right py-6 px-6 uppercase font-bold text-sm tracking-wider">
+                                            <i class="fas fa-dollar-sign mr-2"></i>Valor (COP)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-700">
+                                    <tr class="table-row border-b border-gray-100">
+                                        <td class="py-6 px-6">
+                                            <div class="flex items-center">
+                                                <div class="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+                                                <span class="font-bold text-lg">EMCALI</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-6 px-6">
+                                            <p class="text-gray-800 leading-relaxed">Fortalecer capacidades comerciales con prototipo de ecosistema digital con IA.</p>
+                                        </td>
+                                        <td class="text-right py-6 px-6">
+                                            <span class="font-black text-2xl text-green-600">$2,500,000,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-row border-b border-gray-100">
+                                        <td class="py-6 px-6">
+                                            <div class="flex items-center">
+                                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
+                                                <span class="font-bold text-lg">INSTITUTO SINCHI</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-6 px-6">
+                                            <p class="text-gray-800 leading-relaxed">Servicios profesionales en ciencia de datos geoespaciales para modelos de IA.</p>
+                                        </td>
+                                        <td class="text-right py-6 px-6">
+                                            <span class="font-black text-2xl text-blue-600">$70,000,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-row border-b border-gray-100">
+                                        <td class="py-6 px-6">
+                                            <div class="flex items-center">
+                                                <div class="w-3 h-3 bg-purple-500 rounded-full mr-3 animate-pulse"></div>
+                                                <span class="font-bold text-lg">COLOMBIA CREA TALENTO</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-6 px-6">
+                                            <p class="text-gray-800 leading-relaxed">Desarrollo técnico con IA para evento de posicionamiento de Bogotá como hub tecnológico.</p>
+                                        </td>
+                                        <td class="text-right py-6 px-6">
+                                            <span class="font-black text-2xl text-purple-600">$25,212,813</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td class="py-6 px-6">
+                                            <div class="flex items-center">
+                                                <div class="w-3 h-3 bg-orange-500 rounded-full mr-3 animate-pulse"></div>
+                                                <span class="font-bold text-lg">UNIVERSIDAD DE LOS LLANOS</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-6 px-6">
+                                            <p class="text-gray-800 leading-relaxed">Adquisición de equipos para clasificación de carcinomas caninos usando Redes Neuronales.</p>
+                                        </td>
+                                        <td class="text-right py-6 px-6">
+                                            <span class="font-black text-2xl text-orange-600">$17,666,740</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <div class="inline-flex items-center space-x-2 bg-yellow-50 rounded-full px-6 py-3">
+                            <i class="fas fa-clock text-yellow-500"></i>
+                            <p class="text-gray-600 font-semibold">
+                                Total de oportunidades inmediatas: <span class="text-yellow-600 font-black">$2,612,879,553 COP</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="hero-gradient text-white py-12 mt-20">
+            <div class="container mx-auto px-4 text-center">
+                <div class="flex items-center justify-center mb-6">
+                    <i class="fas fa-chart-bar text-3xl mr-3"></i>
+                    <h3 class="text-2xl font-bold">Análisis Completo</h3>
+                </div>
+                <p class="text-gray-200 text-lg mb-6">
+                    Infografía generada a partir del "Análisis del Mercado de Contratación Pública en Inteligencia Artificial"
+                </p>
+                <div class="flex justify-center space-x-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-black">+$200M</div>
+                        <div class="text-sm opacity-75">Mercado Total</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-black">15+</div>
+                        <div class="text-sm opacity-75">Entidades Clave</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-black">5</div>
+                        <div class="text-sm opacity-75">Tipos de Proyecto</div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
     <script>
-        
+        // Utility function for wrapping labels
         function wrapLabel(label, maxWidth) {
             if (label.length <= maxWidth) {
                 return label;
@@ -261,8 +653,12 @@
                         font: {
                             family: "'Inter', sans-serif",
                             size: 14,
+                            weight: '600'
                         },
-                        color: '#374151'
+                        color: '#374151',
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle'
                     }
                 },
                 tooltip: {
@@ -270,16 +666,26 @@
                         title: tooltipTitleCallback
                     },
                     bodyFont: {
-                        family: "'Inter', sans-serif"
+                        family: "'Inter', sans-serif",
+                        size: 14
                     },
                     titleFont: {
-                        family: "'Inter', sans-serif"
-                    }
+                        family: "'Inter', sans-serif",
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: '#667eea',
+                    borderWidth: 2,
+                    cornerRadius: 10,
+                    displayColors: true
                 }
-            },
-            
+            }
         };
 
+        // Compradores Chart Data
         const compradoresData = {
             labels: [
                 'Fondo Único de TIC (MinTIC)',
@@ -290,9 +696,21 @@
             datasets: [{
                 label: 'Inversión (en Miles de Millones COP)',
                 data: [200, 2.5, 1.3, 0.46],
-                backgroundColor: ['#0077B6', '#48CAE4', '#90E0EF', '#CAF0F8'],
-                borderColor: '#004AAD',
-                borderWidth: 2
+                backgroundColor: [
+                    'rgba(102, 126, 234, 0.8)',
+                    'rgba(72, 202, 228, 0.8)',
+                    'rgba(144, 224, 239, 0.8)',
+                    'rgba(202, 240, 248, 0.8)'
+                ],
+                borderColor: [
+                    '#667eea',
+                    '#48cae4',
+                    '#90e0ef',
+                    '#caf0f8'
+                ],
+                borderWidth: 3,
+                borderRadius: 8,
+                borderSkipped: false
             }]
         };
 
@@ -309,25 +727,46 @@
                         title: {
                             display: true,
                             text: 'Inversión (Miles de Millones COP)',
-                             font: { weight: 'bold', size: 14, family: "'Inter', sans-serif" },
-                             color: '#374151'
+                            font: { 
+                                weight: 'bold', 
+                                size: 16, 
+                                family: "'Inter', sans-serif" 
+                            },
+                            color: '#374151'
                         },
                         ticks: {
-                           font: { family: "'Inter', sans-serif" },
-                           color: '#374151'
+                            font: { 
+                                family: "'Inter', sans-serif",
+                                size: 12
+                            },
+                            color: '#6b7280'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
                         }
                     },
                     y: {
                         ticks: {
-                           font: { family: "'Inter',sans-serif" },
-                           color: '#374151'
+                            font: { 
+                                family: "'Inter', sans-serif",
+                                size: 12,
+                                weight: '600'
+                            },
+                            color: '#374151'
+                        },
+                        grid: {
+                            display: false
                         }
                     }
                 },
-                 plugins: { ...commonChartOptions.plugins, legend: { display: false } }
+                plugins: { 
+                    ...commonChartOptions.plugins, 
+                    legend: { display: false } 
+                }
             }
         });
 
+        // Proyectos Chart Data
         const proyectosData = {
             labels: [
                 wrapLabel('Plataformas de Datos y Analítica Avanzada', 16),
@@ -340,13 +779,21 @@
                 label: 'Tipos de Proyecto',
                 data: [3900, 680, 200, 150, 2900], 
                 backgroundColor: [
-                    '#004AAD',
-                    '#0077B6',
-                    '#48CAE4',
-                    '#90E0EF',
-                    '#CAF0F8'
+                    'rgba(102, 126, 234, 0.8)',
+                    'rgba(118, 75, 162, 0.8)',
+                    'rgba(72, 202, 228, 0.8)',
+                    'rgba(144, 224, 239, 0.8)',
+                    'rgba(202, 240, 248, 0.8)'
                 ],
-                hoverOffset: 4
+                borderColor: [
+                    '#667eea',
+                    '#764ba2',
+                    '#48cae4',
+                    '#90e0ef',
+                    '#caf0f8'
+                ],
+                borderWidth: 3,
+                hoverOffset: 15
             }]
         };
 
@@ -356,19 +803,24 @@
             data: proyectosData,
             options: {
                 ...commonChartOptions,
-                 plugins: {
+                cutout: '60%',
+                plugins: {
                     ...commonChartOptions.plugins,
                     tooltip: {
                         ...commonChartOptions.plugins.tooltip,
                         callbacks: {
-                           ...commonChartOptions.plugins.tooltip.callbacks,
+                            ...commonChartOptions.plugins.tooltip.callbacks,
                             label: function(context) {
                                 let label = context.label || '';
                                 if (label) {
                                     label += ': ';
                                 }
                                 if (context.parsed !== null) {
-                                    label += new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(context.parsed * 1000000);
+                                    label += new Intl.NumberFormat('es-CO', { 
+                                        style: 'currency', 
+                                        currency: 'COP', 
+                                        minimumFractionDigits: 0 
+                                    }).format(context.parsed * 1000000);
                                 }
                                 return 'Valor Máx: ' + label;
                             }
@@ -376,6 +828,29 @@
                     }
                 }
             }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
         });
     </script>
 </body>
