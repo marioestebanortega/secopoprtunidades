@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company IA - Diagramas de Procesos Interactivos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --accent-red: #ef4444;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --flow-line: #475569;
+            --active-flow: #06b6d4;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Grid Background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            animation: gridMove 30s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        /* Process Diagrams Section */
+        .processes-section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Process Diagram Container */
+        .process-grid {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .process-diagram {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .process-diagram:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .process-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .process-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .process-category {
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--primary-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: auto;
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flow-node {
+            background: var(--dark-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            min-width: 120px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .flow-node:hover {
+            border-color: var(--active-flow);
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .flow-node.input {
+            border-color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .flow-node.process {
+            border-color: var(--primary-blue);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .flow-node.output {
+            border-color: var(--accent-orange);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .flow-node.ai {
+            border-color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .node-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .node-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        /* Flow Arrows */
+        .flow-arrow {
+            width: 40px;
+            height: 2px;
+            background: var(--flow-line);
+            position: relative;
+            margin: 0 0.5rem;
+        }
+
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid var(--flow-line);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .flow-arrow.active {
+            background: var(--active-flow);
+            animation: flowPulse 2s ease-in-out infinite;
+        }
+
+        .flow-arrow.active::after {
+            border-left-color: var(--active-flow);
+        }
+
+        @keyframes flowPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Data Flow Animation */
+        .data-flow {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--active-flow);
+            border-radius: 50%;
+            opacity: 0;
+            animation: dataMove 3s ease-in-out infinite;
+        }
+
+        @keyframes dataMove {
+            0% { 
+                opacity: 0;
+                transform: translateX(0);
+            }
+            20% { 
+                opacity: 1;
+            }
+            80% { 
+                opacity: 1;
+            }
+            100% { 
+                opacity: 0;
+                transform: translateX(200px);
+            }
+        }
+
+        /* Process Details */
+        .process-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .detail-card {
+            background: var(--dark-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            border-color: var(--primary-blue);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .detail-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-blue);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .detail-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Interactive Controls */
+        .process-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .control-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--secondary-blue);
+        }
+
+        .control-btn.active {
+            background: var(--accent-green);
+        }
+
+        /* Stats Dashboard */
+        .stats-section {
+            padding: 6rem 2rem;
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+
+            .process-details {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-title {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .loading-diagram {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .loading-node {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            border-radius: 8px;
+            animation: loadingPulse 1.5s ease-in-out infinite;
+        }
+
+        .loading-node:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .loading-node:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-title">Inicializando Diagramas de Proceso...</div>
+            <div class="loading-diagram">
+                <div class="loading-node"></div>
+                <div class="loading-node"></div>
+                <div class="loading-node"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Company.IA</div>
+            <ul class="nav-menu">
+                <li><a href="#procesos" class="nav-link">Procesos</a></li>
+                <li><a href="#stats" class="nav-link">Métricas</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Diagramas de Procesos IA</h1>
+            <p class="hero-subtitle">Visualiza cómo nuestros agentes inteligentes transforman tus flujos de trabajo empresariales</p>
+            <div class="cta-buttons">
+                <a href="#procesos" class="btn btn-primary">Explorar Procesos</a>
+                <a href="#contacto" class="btn btn-secondary">Solicitar Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Diagrams Section -->
+    <section class="processes-section" id="procesos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Flujos de Trabajo Inteligentes</h2>
+                <p class="section-subtitle">Cada producto diseñado como un sistema de procesos optimizado con IA</p>
+            </div>
+
+            <div class="process-grid">
+                <!-- Process 1: AgentSupport Pro -->
+                <div class="process-diagram">
+                    <div class="process-header">
+                        <div class="process-icon">🤖</div>
+                        <div>
+                            <div class="process-title">AgentSupport Pro</div>
+                        </div>
+                        <div class="process-category">Customer Service AI</div>
+                    </div>
+
+                    <div class="flow-diagram">
+                        <div class="flow-node input">
+                            <div class="node-label">Input</div>
+                            <div class="node-title">Consulta Cliente</div>
+                        </div>
+                        <div class="flow-arrow active">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node ai">
+                            <div class="node-label">AI Process</div>
+                            <div class="node-title">NLP Analysis</div>
+                        </div>
+                        <div class="flow-arrow active">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node process">
+                            <div class="node-label">Decision</div>
+                            <div class="node-title">Auto/Escalate</div>
+                        </div>
+                        <div class="flow-arrow active">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node output">
+                            <div class="node-label">Output</div>
+                            <div class="node-title">Respuesta</div>
+                        </div>
+                    </div>
+
+                    <div class="process-details">
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">📥</div>
+                                Recepción Multicanal
+                            </div>
+                            <div class="detail-description">
+                                Captura consultas desde chat, email, WhatsApp y redes sociales en tiempo real.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">🧠</div>
+                                Procesamiento NLP
+                            </div>
+                            <div class="detail-description">
+                                Análisis de intención, sentimiento y contexto usando modelos de lenguaje avanzados.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">⚡</div>
+                                Respuesta Inteligente
+                            </div>
+                            <div class="detail-description">
+                                Generación automática de respuestas personalizadas o escalamiento a agentes humanos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-controls">
+                        <button class="control-btn active" onclick="activateFlow(this)">Iniciar Flujo</button>
+                        <button class="control-btn" onclick="pauseFlow(this)">Pausar</button>
+                        <button class="control-btn" onclick="resetFlow(this)">Reiniciar</button>
+                    </div>
+                </div>
+
+                <!-- Process 2: InfoAgent Enterprise -->
+                <div class="process-diagram">
+                    <div class="process-header">
+                        <div class="process-icon">🔍</div>
+                        <div>
+                            <div class="process-title">InfoAgent Enterprise</div>
+                        </div>
+                        <div class="process-category">Knowledge Intelligence</div>
+                    </div>
+
+                    <div class="flow-diagram">
+                        <div class="flow-node input">
+                            <div class="node-label">Input</div>
+                            <div class="node-title">Consulta Info</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node ai">
+                            <div class="node-label">AI Process</div>
+                            <div class="node-title">Búsqueda Semántica</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node process">
+                            <div class="node-label">Analysis</div>
+                            <div class="node-title">Contextualización</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node output">
+                            <div class="node-label">Output</div>
+                            <div class="node-title">Insights</div>
+                        </div>
+                    </div>
+
+                    <div class="process-details">
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">📚</div>
+                                Indexación Inteligente
+                            </div>
+                            <div class="detail-description">
+                                Procesamiento y vectorización de documentos empresariales para búsqueda semántica.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">🎯</div>
+                                Búsqueda Contextual
+                            </div>
+                            <div class="detail-description">
+                                Encuentra información relevante basada en significado, no solo palabras clave.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">💡</div>
+                                Generación de Insights
+                            </div>
+                            <div class="detail-description">
+                                Síntesis automática de información compleja en respuestas comprensibles.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-controls">
+                        <button class="control-btn" onclick="activateFlow(this)">Iniciar Flujo</button>
+                        <button class="control-btn" onclick="pauseFlow(this)">Pausar</button>
+                        <button class="control-btn" onclick="resetFlow(this)">Reiniciar</button>
+                    </div>
+                </div>
+
+                <!-- Process 3: DocFlow AI -->
+                <div class="process-diagram">
+                    <div class="process-header">
+                        <div class="process-icon">📄</div>
+                        <div>
+                            <div class="process-title">DocFlow AI</div>
+                        </div>
+                        <div class="process-category">Document Automation</div>
+                    </div>
+
+                    <div class="flow-diagram">
+                        <div class="flow-node input">
+                            <div class="node-label">Input</div>
+                            <div class="node-title">Documento</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node ai">
+                            <div class="node-label">AI Process</div>
+                            <div class="node-title">OCR + Clasificación</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node process">
+                            <div class="node-label">Workflow</div>
+                            <div class="node-title">Procesamiento</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node output">
+                            <div class="node-label">Output</div>
+                            <div class="node-title">Datos Estructurados</div>
+                        </div>
+                    </div>
+
+                    <div class="process-details">
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">👁️</div>
+                                Reconocimiento OCR
+                            </div>
+                            <div class="detail-description">
+                                Extracción precisa de texto e imágenes con tecnología de visión artificial avanzada.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">🏷️</div>
+                                Clasificación Automática
+                            </div>
+                            <div class="detail-description">
+                                Identificación del tipo de documento y enrutamiento al workflow correspondiente.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">⚙️</div>
+                                Workflow Adaptativo
+                            </div>
+                            <div class="detail-description">
+                                Procesamiento personalizado según el tipo y contenido del documento.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-controls">
+                        <button class="control-btn" onclick="activateFlow(this)">Iniciar Flujo</button>
+                        <button class="control-btn" onclick="pauseFlow(this)">Pausar</button>
+                        <button class="control-btn" onclick="resetFlow(this)">Reiniciar</button>
+                    </div>
+                </div>
+
+                <!-- Process 4: ProductivIA Plus -->
+                <div class="process-diagram">
+                    <div class="process-header">
+                        <div class="process-icon">⚡</div>
+                        <div>
+                            <div class="process-title">ProductivIA Plus</div>
+                        </div>
+                        <div class="process-category">Productivity Assistant</div>
+                    </div>
+
+                    <div class="flow-diagram">
+                        <div class="flow-node input">
+                            <div class="node-label">Input</div>
+                            <div class="node-title">Tareas/Calendario</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node ai">
+                            <div class="node-label">AI Process</div>
+                            <div class="node-title">Optimización</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node process">
+                            <div class="node-label">Automation</div>
+                            <div class="node-title">Ejecución</div>
+                        </div>
+                        <div class="flow-arrow">
+                            <div class="data-flow"></div>
+                        </div>
+                        <div class="flow-node output">
+                            <div class="node-label">Output</div>
+                            <div class="node-title">Productividad</div>
+                        </div>
+                    </div>
+
+                    <div class="process-details">
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">📅</div>
+                                Gestión Inteligente
+                            </div>
+                            <div class="detail-description">
+                                Optimización automática de horarios y priorización de tareas basada en patrones.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">📧</div>
+                                Automatización Email
+                            </div>
+                            <div class="detail-description">
+                                Redacción, programación y respuesta automática de correos electrónicos.
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-title">
+                                <div class="detail-icon">📊</div>
+                                Análisis de Patrones
+                            </div>
+                            <div class="detail-description">
+                                Identificación de hábitos de trabajo para sugerir mejoras de productividad.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="process-controls">
+                        <button class="control-btn" onclick="activateFlow(this)">Iniciar Flujo</button>
+                        <button class="control-btn" onclick="pauseFlow(this)">Pausar</button>
+                        <button class="control-btn" onclick="resetFlow(this)">Reiniciar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Métricas de Rendimiento</h2>
+                <p class="section-subtitle">Datos en tiempo real de nuestros procesos de IA</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime de Procesos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.3s</div>
+                    <div class="stat-label">Tiempo de Respuesta</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Reducción de Tiempo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Procesos Automatizados</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Loading Animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // Flow Control Functions
+        function activateFlow(button) {
+            const diagram = button.closest('.process-diagram');
+            const arrows = diagram.querySelectorAll('.flow-arrow');
+            const controls = diagram.querySelectorAll('.control-btn');
+            
+            // Reset all buttons
+            controls.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Activate flow animation
+            arrows.forEach((arrow, index) => {
+                setTimeout(() => {
+                    arrow.classList.add('active');
+                }, index * 500);
+            });
+        }
+
+        function pauseFlow(button) {
+            const diagram = button.closest('.process-diagram');
+            const arrows = diagram.querySelectorAll('.flow-arrow');
+            const controls = diagram.querySelectorAll('.control-btn');
+            
+            controls.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            arrows.forEach(arrow => {
+                arrow.classList.remove('active');
+            });
+        }
+
+        function resetFlow(button) {
+            const diagram = button.closest('.process-diagram');
+            const arrows = diagram.querySelectorAll('.flow-arrow');
+            const controls = diagram.querySelectorAll('.control-btn');
+            
+            controls.forEach(btn => btn.classList.remove('active'));
+            arrows.forEach(arrow => {
+                arrow.classList.remove('active');
+            });
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive Node Hover Effects
+        document.querySelectorAll('.flow-node').forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+                this.style.boxShadow = '0 10px 25px rgba(37, 99, 235, 0.3)';
+            });
+
+            node.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Auto-start first diagram
+        setTimeout(() => {
+            const firstButton = document.querySelector('.control-btn.active');
+            if (firstButton) {
+                activateFlow(firstButton);
+            }
+        }, 3000);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all process diagrams
+        document.querySelectorAll('.process-diagram').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
