@@ -642,6 +642,50 @@
             font-size: 1.1em;
             letter-spacing: 0.5px;
         }
+
+        .explain-section {
+            display: none;
+            background: rgba(0,212,255,0.07);
+            border-radius: 10px;
+            margin-top: 1em;
+            padding: 1em;
+            border: 1px solid #00d4ff33;
+            color: #b3c5d1;
+            font-size: 0.98em;
+            transition: all 0.3s;
+        }
+        .explain-section.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+        .explain-btn {
+            background: linear-gradient(135deg, #00d4ff, #36d1dc);
+            color: #0f0f23;
+            border: none;
+            border-radius: 20px;
+            padding: 0.5em 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.7em;
+            transition: background 0.3s;
+        }
+        .explain-btn:hover {
+            background: #36d1dc;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .explain-section a {
+            color: #00d4ff;
+            text-decoration: underline dotted;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .explain-section a:hover {
+            color: #36d1dc;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -652,7 +696,6 @@
                 <li><a href="#productos">Productos</a></li>
                 <li><a href="#insights">Market Intelligence</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#arquitectura">Arquitectura</a></li>
                 <li><a href="costos.html">Costos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -1107,24 +1150,55 @@
     <section class="market-insights" id="insights">
         <div class="container">
             <h2 class="section-title">Market Intelligence</h2>
-            <p class="section-subtitle">Insights basados en análisis del mercado colombiano de automatización con IA</p>
-            
+            <p class="section-subtitle">Insights basados en análisis del mercado colombiano de automatización con IA 2024-2025</p>
             <div class="insights-grid">
+                <!-- Indicador 1 -->
                 <div class="insight-item">
-                    <h3>150B+</h3>
-                    <p>Mercado de agentes IA identificado</p>
+                    <h3>≈ US $30 000 M</h3>
+                    <p>Tamaño del mercado de cloud & IA en Colombia (2025)</p>
+                    <button class="explain-btn" onclick="toggleExplain('explain1')">¿Cómo se calculó?</button>
+                    <div class="explain-section" id="explain1">
+                        <p>
+                            AWS estima que la demanda de servicios en la nube (IaaS + PaaS, fuertemente apalancados por IA) crecerá 30-40% en 2025 y alcanzará ≈ US $30 000 M en valor de mercado en el país. Esto engloba la infraestructura sobre la que corren la mayoría de las soluciones de IA empresariales, así que es el mejor "proxy" público disponible para hablar de mercado IA+automatización a escala nacional.<br>
+                            <a href="https://www.bu.com.co" target="_blank">Fuente: bu.com.co</a>
+                        </p>
+                    </div>
                 </div>
+                <!-- Indicador 2 -->
                 <div class="insight-item">
-                    <h3>90%</h3>
-                    <p>Mejora en productividad empresarial</p>
+                    <h3>69%</h3>
+                    <p>Empresas que esperan un impacto "alto" de la IA (2025)</p>
+                    <button class="explain-btn" onclick="toggleExplain('explain2')">¿Cómo se calculó?</button>
+                    <div class="explain-section" id="explain2">
+                        <p>
+                            Encuesta SAP a 1 200 decisores LATAM: en Colombia 69% anticipan que la IA transformará significativamente su sector.<br>
+                            <a href="https://www.infobae.com" target="_blank">Fuente: infobae.com</a>
+                        </p>
+                    </div>
                 </div>
+                <!-- Indicador 3 -->
                 <div class="insight-item">
-                    <h3>5</h3>
-                    <p>Áreas de especialización</p>
+                    <h3>30 - 45%</h3>
+                    <p>Ahorro potencial en costos operativos (2024)</p>
+                    <button class="explain-btn" onclick="toggleExplain('explain3')">¿Cómo se calculó?</button>
+                    <div class="explain-section" id="explain3">
+                        <p>
+                            Casos de uso en utilidades y logística muestran reducciones de ≈ 30%; otros verticales —retail, manufactura ligera— reportan hasta 45% cuando combinan IA + automatización de flujos.<br>
+                            <a href="https://www.openintl.com" target="_blank">Fuente: openintl.com</a>
+                        </p>
+                    </div>
                 </div>
+                <!-- Indicador 4 -->
                 <div class="insight-item">
-                    <h3>2025</h3>
-                    <p>Año de adopción masiva</p>
+                    <h3>2024-25</h3>
+                    <p>Ventana de aceleración normativa y adopción</p>
+                    <button class="explain-btn" onclick="toggleExplain('explain4')">¿Cómo se calculó?</button>
+                    <div class="explain-section" id="explain4">
+                        <p>
+                            2024: aprobación del CONPES 4144 y creación de política pública de IA. 2025: proyecto de ley integral + inversiones de 480 000 M COP para investigación y adopción. Sitúa 2024-25 como el "punto de inflexión" regulatorio y de mercado.<br>
+                            <a href="https://www.elpais.com" target="_blank">Fuente: elpais.com</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1217,6 +1291,11 @@
             
             section.classList.toggle('active');
             button.classList.toggle('active');
+        }
+
+        function toggleExplain(id) {
+            const section = document.getElementById(id);
+            section.classList.toggle('active');
         }
     </script>
 </body>
