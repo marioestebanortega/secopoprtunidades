@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Análisis de Productos IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with cool accents -->
+    <!-- Application Structure Plan: A single-page application (SPA) with a top navigation bar to switch between a general overview and detailed views for each of the six IA products. The overview provides a high-level cost comparison using a bar chart. Each product's detail page uses a two-column responsive layout: one for qualitative information (objective, viability, architecture) and another for quantitative data (interactive cost breakdown doughnut chart and detailed table). This structure was chosen to allow users to easily compare products at a high level and then deep-dive into specifics without being overwhelmed, facilitating both quick analysis and detailed exploration in a user-friendly, non-linear way. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: Overall estimated costs for all products. -> Goal: Compare. -> Viz: Horizontal Bar Chart (Chart.js) showing cost ranges. -> Interaction: Tooltips on hover. -> Justification: Bar charts are excellent for comparing magnitudes across categories. Using ranges provides a more accurate view of the estimates. -> Library: Chart.js (Canvas).
+        - Report Info: Cost breakdown by Azure service for each product. -> Goal: Show composition. -> Viz: Doughnut Chart (Chart.js). -> Interaction: Tooltips on hover showing service and cost. -> Justification: Doughnut charts are effective for showing parts of a whole, making the cost structure for each product easy to grasp visually. -> Library: Chart.js (Canvas).
+        - Report Info: Viability, architecture, and technical details. -> Goal: Inform & Contextualize. -> Presentation: Structured HTML text blocks with clear headings and lists. -> Interaction: Static text. -> Justification: Clear, scannable text is best for conveying qualitative analysis and technical specifications. -> Library/Method: HTML/Tailwind CSS.
+        - Report Info: Detailed cost table per product. -> Goal: Provide precise data. -> Presentation: HTML Table. -> Justification: Tables are the standard for presenting detailed, granular data for reference. -> Library/Method: HTML/Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 450px;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .content-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Análisis Técnico y Arquitectónico de Productos IA</h1>
+            <p class="mt-2 text-lg text-gray-600">Panel Interactivo de Viabilidad, Arquitectura y Costos en Azure</p>
+        </header>
+
+        <nav id="navigation" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+            <!-- Navigation buttons will be inserted here by JS -->
+        </nav>
+
+        <main id="main-content">
+            <!-- Content will be dynamically inserted here -->
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>Generado a partir del "Informe de Análisis Técnico y Arquitectónico de Productos IA".</p>
+            <p>Los costos son estimaciones mensuales en USD y pueden variar según el uso.</p>
+        </footer>
+    </div>
+
+    <script>
+        const reportData = {
+            "Visión General": {},
+            "Conecta+": {
+                objetivo: "Asistente inteligente multicanal enfocado en atención al cliente 24/7, para reducir costos operativos y mejorar tiempos de respuesta.",
+                viabilidad: "Viabilidad alta. Combina tecnologías maduras de chatbot, NLP e integración con CRM. Puede reducir hasta un 30% los costos de atención al cliente. Es especialmente viable en Colombia por el uso extendido de WhatsApp.",
+                arquitectura: [
+                    "Interacción multicanal a través de Azure Bot Service.",
+                    "Lógica conversacional en Azure App Service con Bot Framework.",
+                    "Procesamiento de Lenguaje Natural (NLP) con Azure Language Service (CLU) y opcionalmente Azure OpenAI.",
+                    "Integración a CRM/Bases de datos mediante Azure Functions o Logic Apps.",
+                    "Escalamiento a agentes humanos con persistencia de historial en Azure Cosmos DB/Blob Storage.",
+                    "Monitoreo con Application Insights y seguridad con Azure AD y Key Vault."
+                ],
+                costos: {
+                    totalMin: 150,
+                    totalMax: 250,
+                    breakdown: [
+                        { service: 'Hosting (App Service)', cost: 70, icon: '💻' },
+                        { service: 'IA y NLP (Cognitive/OpenAI)', cost: 30, icon: '🧠' },
+                        { service: 'Base de Datos (Cosmos DB/SQL)', cost: 30, icon: '🗄️' },
+                        { service: 'Integración (Logic Apps)', cost: 5, icon: '⚙️' },
+                        { service: 'Monitoreo (App Insights)', cost: 5, icon: '📊' },
+                        { service: 'Otros (Bot Service, Twilio)', cost: 10, icon: '🔌' }
+                    ]
+                }
+            },
+            "Saber+": {
+                objetivo: "Asistente inteligente para encontrar respuestas dentro de una organización, buscando en documentos y fuentes internas para ahorrar tiempo.",
+                viabilidad: "Viabilidad muy alta. Responde a la necesidad de reducir el tiempo que los empleados invierten buscando información (hasta un 20% de su jornada). La tecnología de búsqueda semántica y RAG (Retrieval-Augmented Generation) es robusta y disponible en Azure.",
+                arquitectura: [
+                    "Ingesta e indexación de documentos con Azure Cognitive Search (Azure AI Search).",
+                    "Uso de búsqueda semántica, por vectores y rankers para entender preguntas en lenguaje natural.",
+                    "Generación de respuestas resumidas y contextuales con Azure OpenAI (GPT-4).",
+                    "Interfaz de usuario vía portal web (App Service) o como bot en Microsoft Teams.",
+                    "Control de acceso y seguridad por roles integrado con Azure AD.",
+                    "Actualización continua del índice de conocimiento mediante Logic Apps o Functions."
+                ],
+                costos: {
+                    totalMin: 300,
+                    totalMax: 400,
+                    breakdown: [
+                        { service: 'Búsqueda (Cognitive Search)', cost: 187, icon: '🔍' },
+                        { service: 'IA y NLP (OpenAI)', cost: 100, icon: '🧠' },
+                        { service: 'Hosting (App Service)', cost: 60, icon: '💻' },
+                        { service: 'Base de Datos (SQL)', cost: 20, icon: '🗄️' },
+                        { service: 'Integración (Logic Apps)', cost: 10, icon: '⚙️' },
+                        { service: 'Monitoreo (App Insights)', cost: 12, icon: '📊' },
+                        { service: 'Almacenamiento (Blob)', cost: 1, icon: '💾' }
+                    ]
+                }
+            },
+            "Procesa+": {
+                objetivo: "Transformar la gestión documental en procesos automáticos, leyendo, clasificando y extrayendo datos de documentos para activar flujos de trabajo.",
+                viabilidad: "Viabilidad muy alta. Aprovecha los avances en Document AI (como Azure AI Document Intelligence) para OCR avanzado, clasificación y extracción de campos con alta precisión, reduciendo drásticamente la digitación manual y los errores.",
+                arquitectura: [
+                    "Captura de documentos por múltiples vías (portal, email, carpetas).",
+                    "Cola de procesamiento (Azure Queue/Service Bus) para gestionar la carga.",
+                    "Núcleo de procesamiento con Azure AI Document Intelligence (Form Recognizer) para OCR, clasificación y extracción.",
+                    "Orquestación de flujos de aprobación y validación con Azure Logic Apps.",
+                    "Integración con sistemas ERP (SAP, Dynamics) y notificación por correo/Teams.",
+                    "Base de datos (Azure SQL) para trazabilidad completa de cada etapa del proceso."
+                ],
+                costos: {
+                    totalMin: 200,
+                    totalMax: 315,
+                    breakdown: [
+                        { service: 'IA (Form Recognizer)', cost: 225, icon: '🤖' },
+                        { service: 'Hosting (App Service)', cost: 25, icon: '💻' },
+                        { service: 'Base de Datos (SQL)', cost: 30, icon: '🗄️' },
+                        { service: 'Integración (Logic Apps/Bus)', cost: 25, icon: '⚙️' },
+                        { service: 'Almacenamiento (Blob)', cost: 5, icon: '💾' },
+                        { service: 'Monitoreo (App Insights)', cost: 5, icon: '📊' }
+                    ]
+                }
+            },
+            "Optimiza+": {
+                objetivo: "Asistente inteligente para impulsar la productividad personal y de equipos, organizando tareas, automatizando rutinas y analizando el uso del tiempo.",
+                viabilidad: "Viabilidad alta. Se alinea con la tendencia de asistentes de productividad (ej. Microsoft 365 Copilot). Es técnicamente factible mediante la integración con APIs de herramientas como Outlook, Teams, Slack y Trello, aunque la complejidad radica en gestionar múltiples autenticaciones y unificar datos.",
+                arquitectura: [
+                    "Backend central en Azure App Service/Functions para orquestar las APIs externas.",
+                    "Integración con Microsoft Graph API para datos de M365 (correo, calendario, tareas).",
+                    "Conexión con APIs de Slack, Trello, Google Workspace mediante OAuth 2.0.",
+                    "Base de datos (SQL/Cosmos DB) para perfiles, reglas, tareas y métricas agregadas.",
+                    "Tareas programadas (Azure Functions Timers) para análisis diarios y envíos de reportes.",
+                    "Interfaz de usuario conversacional (Bot en Teams/Slack) y/o un dashboard web."
+                ],
+                costos: {
+                    totalMin: 200,
+                    totalMax: 300,
+                    breakdown: [
+                        { service: 'Hosting (App Service)', cost: 100, icon: '💻' },
+                        { service: 'Base de Datos (SQL/Cosmos)', cost: 45, icon: '🗄️' },
+                        { service: 'IA (OpenAI)', cost: 20, icon: '🧠' },
+                        { service: 'Otros (AD B2C)', cost: 20, icon: '🔌' },
+                        { service: 'Monitoreo (App Insights)', cost: 10, icon: '📊' },
+                        { service: 'Integración (Functions)', cost: 5, icon: '⚙️' }
+                    ]
+                }
+            },
+            "Implementa+": {
+                objetivo: "Servicio de consultoría especializada para la adopción de soluciones de IA, asegurando que los proyectos generen resultados tangibles y medibles.",
+                viabilidad: "Viabilidad muy alta. Depende del know-how del equipo consultor más que de tecnología propia. Responde a una necesidad crítica del mercado, ya que muchos proyectos de IA fracasan por falta de una buena estrategia de implementación y gestión del cambio.",
+                arquitectura: [
+                    "Plataforma de colaboración y gestión de proyectos con Azure DevOps (Boards, Repos, Pipelines).",
+                    "Entornos 'sandbox' en Azure para prototipado y demostraciones rápidas de PoC.",
+                    "Uso de arquitecturas de referencia del Azure Architecture Center.",
+                    "Monitorización de KPIs y ROI con Power BI y Azure Monitor.",
+                    "Gestión segura de acceso a suscripciones de clientes con Azure Lighthouse.",
+                    "Base de conocimiento interna (posiblemente con Saber+) para reutilizar expertise."
+                ],
+                costos: {
+                    totalMin: 200,
+                    totalMax: 400,
+                    breakdown: [
+                        { service: 'Sandbox (Recursos Demo)', cost: 150, icon: '🧪' },
+                        { service: 'Knowledge Base (Search)', cost: 150, icon: '📚' },
+                        { service: 'Colaboración (DevOps)', cost: 30, icon: '🤝' },
+                        { service: 'BI (Power BI)', cost: 20, icon: '📈' },
+                        { service: 'Monitoreo (Monitor)', cost: 20, icon: '📊' }
+                    ]
+                }
+            },
+            "Capacita+": {
+                objetivo: "Plataforma educativa (LMS) para desarrollar competencias empresariales en IA, automatización y otras habilidades, con simuladores interactivos.",
+                viabilidad: "Viabilidad muy alta. Se puede desarrollar como una aplicación web a medida en Azure o personalizar un LMS open source. La clave diferenciadora son los simuladores, que se pueden implementar con Azure Lab Services para proporcionar entornos prácticos temporales.",
+                arquitectura: [
+                    "Plataforma web (LMS) en Azure App Service con backend de APIs.",
+                    "Base de datos Azure SQL para gestionar usuarios, cursos, progreso y certificaciones.",
+                    "Almacenamiento de contenido multimedia (videos, PDF) en Azure Blob Storage.",
+                    "Distribución de contenido global y de baja latencia con Azure CDN.",
+                    "Laboratorios prácticos y simuladores con Azure Lab Services.",
+                    "Autenticación segura con Azure AD (SSO) y/o Azure AD B2C para externos."
+                ],
+                costos: {
+                    totalMin: 300,
+                    totalMax: 455,
+                    breakdown: [
+                        { service: 'Hosting (App Service)', cost: 100, icon: '💻' },
+                        { service: 'Búsqueda/IA (Search/OpenAI)', cost: 125, icon: '🧠' },
+                        { service: 'Contenido (Blob/CDN)', cost: 80, icon: '🎥' },
+                        { service: 'Base de Datos (SQL)', cost: 50, icon: '🗄️' },
+                        { service: 'Labs (Lab Services)', cost: 50, icon: '🧪' },
+                        { service: 'Otros (AD B2C)', cost: 20, icon: '🔌' }
+                    ]
+                }
+            }
+        };
+
+        let overviewChart = null;
+        let productChart = null;
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+        }
+
+        function createOverviewChart() {
+            const ctx = document.getElementById('overview-chart').getContext('2d');
+            const products = Object.keys(reportData).filter(p => p !== 'Visión General');
+            const data = {
+                labels: products,
+                datasets: [{
+                    label: 'Costo Mínimo Estimado',
+                    data: products.map(p => reportData[p].costos.totalMin),
+                    backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Costo Máximo Estimado',
+                    data: products.map(p => reportData[p].costos.totalMax),
+                    backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            if (overviewChart) {
+                overviewChart.destroy();
+            }
+
+            overviewChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Rango de Costos Mensuales Estimados por Producto', font: { size: 16 } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += formatCurrency(context.parsed.x);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: false,
+                            title: { display: true, text: 'Costo Estimado (USD)' },
+                            ticks: { callback: value => formatCurrency(value) }
+                        },
+                        y: { stacked: false }
+                    }
+                }
+            });
+        }
+
+        function createProductChart(productName) {
+            const product = reportData[productName];
+            const ctx = document.getElementById('product-cost-chart').getContext('2d');
+            
+            const data = {
+                labels: product.costos.breakdown.map(item => `${item.icon} ${item.service}`),
+                datasets: [{
+                    label: 'Desglose de Costos',
+                    data: product.costos.breakdown.map(item => item.cost),
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.8)', 'rgba(16, 185, 129, 0.8)',
+                        'rgba(249, 115, 22, 0.8)', 'rgba(139, 92, 246, 0.8)',
+                        'rgba(239, 68, 68, 0.8)', 'rgba(217, 70, 239, 0.8)',
+                        'rgba(96, 165, 250, 0.8)'
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            };
+
+            if (productChart) {
+                productChart.destroy();
+            }
+
+            productChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' },
+                        title: { display: true, text: `Desglose de Costos para ${productName}`, font: { size: 16 } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += formatCurrency(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateView(productName) {
+            const mainContent = document.getElementById('main-content');
+            const navigation = document.getElementById('navigation');
+            
+            Array.from(navigation.children).forEach(button => {
+                button.classList.toggle('active', button.dataset.product === productName);
+            });
+
+            mainContent.innerHTML = '';
+            mainContent.classList.add('content-fade-in');
+            mainContent.addEventListener('animationend', () => mainContent.classList.remove('content-fade-in'), { once: true });
+
+
+            if (productName === 'Visión General') {
+                const overviewHTML = `
+                    <div class="bg-white rounded-lg shadow-md p-4 md:p-6">
+                        <h2 class="text-2xl font-bold text-center mb-4 text-gray-800">Comparativa General de Costos</h2>
+                        <p class="text-center text-gray-600 mb-6">Esta gráfica compara los rangos de costos mensuales estimados para cada producto del portafolio. Permite una evaluación rápida del nivel de inversión requerido para cada solución.</p>
+                        <div class="chart-container h-[60vh] md:h-[70vh] max-h-[600px]">
+                            <canvas id="overview-chart"></canvas>
+                        </div>
+                    </div>
+                `;
+                mainContent.innerHTML = overviewHTML;
+                setTimeout(createOverviewChart, 0);
+            } else {
+                const product = reportData[productName];
+                const productHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                        <div class="lg:col-span-2 space-y-6">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-xl font-bold mb-3 text-blue-600">🎯 Objetivo Principal</h3>
+                                <p class="text-gray-700">${product.objetivo}</p>
+                            </div>
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-xl font-bold mb-3 text-blue-600">✅ Viabilidad</h3>
+                                <p class="text-gray-700">${product.viabilidad}</p>
+                            </div>
+                             <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-xl font-bold mb-3 text-blue-600">🏗️ Arquitectura Sugerida</h3>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    ${product.arquitectura.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-3 space-y-6">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                 <h3 class="text-xl font-bold mb-1 text-center text-blue-600">💰 Costos Estimados</h3>
+                                 <p class="text-3xl font-bold text-center text-gray-800">${formatCurrency(product.costos.totalMin)} - ${formatCurrency(product.costos.totalMax)}</p>
+                                 <p class="text-center text-gray-500">por mes</p>
+                                <div class="chart-container mt-4">
+                                    <canvas id="product-cost-chart"></canvas>
+                                </div>
+                            </div>
+                             <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-xl font-bold mb-3 text-blue-600">🔧 Desglose de Servicios</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th class="py-2">Servicio</th>
+                                                <th class="py-2 text-right">Costo Estimado (USD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            ${product.costos.breakdown.map(item => `
+                                                <tr class="border-b border-gray-200">
+                                                    <td class="py-2">${item.icon} ${item.service}</td>
+                                                    <td class="py-2 text-right font-mono">${formatCurrency(item.cost)}</td>
+                                                </tr>
+                                            `).join('')}
+                                             <tr class="font-bold">
+                                                <td class="py-2">Promedio Total</td>
+                                                <td class="py-2 text-right font-mono">${formatCurrency((product.costos.totalMin + product.costos.totalMax) / 2)}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                mainContent.innerHTML = productHTML;
+                setTimeout(() => createProductChart(productName), 0);
+            }
+        }
+
+        function init() {
+            const navigation = document.getElementById('navigation');
+            Object.keys(reportData).forEach(productName => {
+                const button = document.createElement('button');
+                button.textContent = productName;
+                button.dataset.product = productName;
+                button.className = 'nav-button px-3 py-2 md:px-4 md:py-2 rounded-lg font-semibold text-sm md:text-base bg-white text-gray-700 hover:bg-blue-100 shadow-sm';
+                button.onclick = () => updateView(productName);
+                navigation.appendChild(button);
+            });
+            updateView('Visión General');
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
